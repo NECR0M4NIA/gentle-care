@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create("choix_predefinis", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_question")->constrained()->cascadeOnDelete();
+            $table->foreignId("id_question")->constrained("questions")->cascadeOnDelete();
             $table->unique(["id_question"]);
             $table->string("titre_choix");
             $table->integer("valeur_score");

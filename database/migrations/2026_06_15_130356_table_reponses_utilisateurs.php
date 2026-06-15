@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create("reponses_utilisateurs", function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_user")->constrained()->cascadeOnDelete();
-            $table->foreignId("id_choix")->constrained()->cascadeOnDelete();
+            $table->foreignId("id_user")->constrained("users")->cascadeOnDelete();
+            $table->foreignId("id_choix")->constrained("choix_predefinis")->cascadeOnDelete();
             $table->unique(["id_user", "id_choix"]);
             $table->timestamps();
         });
