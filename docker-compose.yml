@@ -53,6 +53,20 @@ services:
     networks:
       - laravel_network
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: laravel_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db          # ← nom du service MySQL
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+    networks:
+      - laravel_network     # ← même réseau que db
+    depends_on:
+      - db
+
 networks:
   laravel_network:
     driver: bridge
