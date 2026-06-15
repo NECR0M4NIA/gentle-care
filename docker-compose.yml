@@ -59,11 +59,11 @@ services:
     ports:
       - "8081:80"
     environment:
-      PMA_HOST: db          # ← nom du service MySQL
+      PMA_HOST: db
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
     networks:
-      - laravel_network     # ← même réseau que db
+      - laravel_network
     depends_on:
       - db
 
