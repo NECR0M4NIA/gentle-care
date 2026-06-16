@@ -25,27 +25,40 @@
 </div>
 <p><a href="/history">Première fois sur le site</a></p> -->
 
-<body style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/assets/images/sunset-beach-bg.png');" 
-      class="bg-cover bg-center bg-no-repeat flex p-6 lg:p-48 items-center lg:justify-center min-h-screen flex-col">
-    <div class="flex flex-col md:flex-row items-center gap-8 p-4">
-        <div class="flex flex-col w-full md:w-1/2 items-start gap-16">
-            <h1 class="text-5xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-black tracking-wide">
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/assets/images/sunset-beach-bg.png');" 
+      class="opacity-0 bg-cover bg-center bg-no-repeat flex flex-col h-screen w-screen overflow-hidden px-6 lg:px-24 lg:py-6">
+    
+    <div class="w-full sticky top-0 z-50">
+        @include('layouts.navbar')
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center gap-8 flex-grow justify-center min-h-0 overflow-hidden">
+        
+        <div class="flex flex-col w-full md:w-1/2 items-start gap-6 lg:gap-10">
+            <h1 style="font-size: 7rem; line-height: 1; background-image: linear-gradient(to bottom, #F2A154, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" 
+                class="uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                 Gentle Care
             </h1>
-            <p class="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] leading-relaxed text-lg">
+            <p class="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] leading-relaxed text-base lg:text-xl max-w-xl">
                 Gentle Care est une plateforme web bienveillante conçue pour accompagner au quotidien les personnes qui traversent des moments
                 difficiles ou ne se sentent pas bien. Notre objectif est d'offrir un espace interactif et apaisant pour aider chacun à retrouver
                 un peu de sérénité et à prendre soin de sa santé mentale.
             </p>
-            <a class="inline-block bg-[#F2A154] hover:bg-[#e08f3e] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="">
+            <a class="inline-block bg-[#FF8D28] hover:bg-[#e08f3e] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="">
                 Première fois sur le site ?
             </a>
         </div>
 
-        <div class="w-full md:w-1/2">
-            <img class="rounded-xl w-full h-auto object-cover drop-shadow-[0_0_32px_rgba(0,0,0,0.3)]" src="/assets/images/tablet-item.png" alt="Aperçu tablette">
+        <div class="w-full md:w-1/2 flex justify-center max-h-[50vh] md:max-h-[70vh]">
+            <img class="rounded-xl max-w-full max-h-full object-contain drop-shadow-[0_0_32px_rgba(0,0,0,0.3)]" src="/assets/images/tablet-item.png" alt="Aperçu tablette">
         </div>
     </div>
+
+    <div class="w-full sticky top-0 z-0">
+        @include('layouts.footer')
+    </div>
+
+    <script src="/assets/js/anims.js"></script>
 </body>
 
 </html>
