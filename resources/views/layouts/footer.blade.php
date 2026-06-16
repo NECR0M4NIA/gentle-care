@@ -1,3 +1,5 @@
-<nav class="flex flex-row items-center bg-white/10 backdrop-blur-md border border-white/40 rounded-2xl w-full justify-center py-6 px-6 shadow-lg">
-    <p class="text-center text-gray-500">© Gentle Care 2026 - All rights reserved</p>
+<nav class="flex flex-row items-center bg-white/10 backdrop-blur-md border border-white/40 rounded-2xl w-full justify-center py-6 px-6 shadow-lg gap-8">
+    <a class="text-white text-[1.5rem]" href="/contact">Contact</a>
+    <div class="w-[2px] h-[12px] bg-white"></div>
+    <a class="text-white text-[1.5rem]" href="/histoire">À Propos</a>
 </nav>
