@@ -15,7 +15,7 @@
         </style>
     @endif
 </head>
-<div class="flex center space-around">
+<!-- <div class="flex center space-around">
     <h1 class="mb-1 font-medium">Gentle Care</h1>
     <p>Titre</p>
     <div class="flex">
@@ -23,6 +23,29 @@
         <p>Login</p>
     </div>
 </div>
-<p><a href="/history">Première fois sur le site</a></p>
+<p><a href="/history">Première fois sur le site</a></p> -->
+
+<body style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/assets/images/sunset-beach-bg.png');" 
+      class="bg-cover bg-center bg-no-repeat flex p-6 lg:p-48 items-center lg:justify-center min-h-screen flex-col">
+    <div class="flex flex-col md:flex-row items-center gap-8 p-4">
+        <div class="flex flex-col w-full md:w-1/2 items-start gap-16">
+            <h1 class="text-5xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-black tracking-wide">
+                Gentle Care
+            </h1>
+            <p class="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] leading-relaxed text-lg">
+                Gentle Care est une plateforme web bienveillante conçue pour accompagner au quotidien les personnes qui traversent des moments
+                difficiles ou ne se sentent pas bien. Notre objectif est d'offrir un espace interactif et apaisant pour aider chacun à retrouver
+                un peu de sérénité et à prendre soin de sa santé mentale.
+            </p>
+            <a class="inline-block bg-[#F2A154] hover:bg-[#e08f3e] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="">
+                Première fois sur le site ?
+            </a>
+        </div>
+
+        <div class="w-full md:w-1/2">
+            <img class="rounded-xl w-full h-auto object-cover drop-shadow-[0_0_32px_rgba(0,0,0,0.3)]" src="/assets/images/tablet-item.png" alt="Aperçu tablette">
+        </div>
+    </div>
+</body>
 
 </html>
