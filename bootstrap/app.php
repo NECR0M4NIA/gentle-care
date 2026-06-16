@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->redirectTo(
+        guests: '/', // Où vont les gens non connectés qui tentent d'aller sur une page privée
+        users: '/dashboard' // OÙ VONT LES CONNECTÉS qui tentent d'aller sur l'accueil !
+    );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
