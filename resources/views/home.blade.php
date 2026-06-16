@@ -26,8 +26,11 @@
 <p><a href="/history">Première fois sur le site</a></p> -->
 
 <body style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/assets/images/sunset-beach-bg.png');" 
-      class="bg-cover bg-center bg-no-repeat flex p-6 lg:p-48 items-center lg:justify-center min-h-screen flex-col">
-    <div class="flex flex-col md:flex-row items-center gap-8 p-4">
+      class="bg-cover bg-center bg-no-repeat flex p-6 lg:p-48 items-center justify-between min-h-screen flex-col">
+    
+    @include('layouts.navbar')
+
+    <div class="flex flex-col md:flex-row items-center gap-8 p-4 flex-grow justify-center">
         <div class="flex flex-col w-full md:w-1/2 items-start gap-16">
             <h1 class="text-5xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-black tracking-wide">
                 Gentle Care
