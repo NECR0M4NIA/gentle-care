@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("id_question")->constrained("questions")->cascadeOnDelete();
             $table->unique(["id_question"]);
-            $table->string("titre_choix");
+            $table->string("titre_choix") ;
             $table->integer("valeur_score");
             $table->timestamps();
         });
