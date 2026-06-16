@@ -57,6 +57,7 @@
     <div class="w-full sticky top-0 z-0">
         @include('layouts.footer')
     </div>
+    <p class="text-center text-gray-500 mt-8">© Gentle Care 2026 - All rights reserved</p>
 
     <script src="/assets/js/anims.js"></script>
 </body>
