@@ -13,9 +13,33 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    @if(auth()->user() && auth()->user()->role === 'user')
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('videos')" :active="request()->routeIs('videos')">
+                        {{ __('Vidéos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('anti-stress')" :active="request()->routeIs('anti-stress')">
+                        {{ __('Anti-Stress') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('playground')" :active="request()->routeIs('playground')">
+                        {{ __('Playground') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('a-propos')" :active="request()->routeIs('a-propos')">
+                        {{ __('À Propos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('avis')" :active="request()->routeIs('avis')">
+                        {{ __('Avis') }}
+                    </x-nav-link>
+                    @else
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                        {{ __('Admin') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -68,9 +92,33 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if(auth()->user() && auth()->user()->role === 'user')
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('videos')" :active="request()->routeIs('videos')">
+                {{ __('Vidéos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('anti-stress')" :active="request()->routeIs('anti-stress')">
+                {{ __('Anti-Stress') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('playground')" :active="request()->routeIs('playground')">
+                {{ __('Playground') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('a-propos')" :active="request()->routeIs('a-propos')">
+                {{ __('À Propos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('avis')" :active="request()->routeIs('avis')">
+                {{ __('Avis') }}
+            </x-responsive-nav-link>
+            @else
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                {{ __('Admin') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
