@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" type="x-icon" href="/assets/icons/gentle-care-orange.svg">
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/gentle-care-orange.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/gentle-care-blue.svg" media="(prefers-color-scheme: dark)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Accueil</title>
     @fonts
@@ -37,7 +38,11 @@
         
         <div class="flex flex-col w-full md:w-1/2 items-start gap-6 lg:gap-10">
             <h1 style="font-size: 7rem; line-height: 1; background-image: linear-gradient(to bottom, #F2A154, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" 
-                class="uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                class="inline dark:hidden uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                Gentle Care
+            </h1>
+            <h1 style="font-size: 7rem; line-height: 1; background-image: linear-gradient(to bottom, #4B83F5, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" 
+                class="hidden dark:block uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                 Gentle Care
             </h1>
             <p class="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] leading-relaxed text-base lg:text-xl max-w-xl">
@@ -45,7 +50,7 @@
                 difficiles ou ne se sentent pas bien. Notre objectif est d'offrir un espace interactif et apaisant pour aider chacun à retrouver
                 un peu de sérénité et à prendre soin de sa santé mentale.
             </p>
-            <a class="inline-block bg-[#FF8D28] hover:bg-[#e08f3e] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="">
+            <a class="inline-block bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="">
                 Première fois sur le site ?
             </a>
         </div>
