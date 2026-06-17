@@ -15,8 +15,8 @@ class ChoixPredefiniSeeder extends Seeder
     {
         ChoixPredefini::factory()->insert([
             "id_question" => 1,
-            "titre_choix" => fake()->sentence(3),
-            "valeur_score" => fake()->numberBetween(1, 15)
+            "titre_choix" => "En pleine forme !",
+            "valeur_score" => 0,
         ]);
     }
 }

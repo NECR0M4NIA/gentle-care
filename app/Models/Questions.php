@@ -11,7 +11,7 @@ class Questions extends Model
 {
     use HasFactory;
 
-    protected $fillable = array("titre_question", "ordre");
+    protected $fillable = array("titre_question", "ordre", "categorie");
 
     public function getQuestionnaire(): BelongsToMany {
         return $this->belongsToMany(Questionnaire::class);

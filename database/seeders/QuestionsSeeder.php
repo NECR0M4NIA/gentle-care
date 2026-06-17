@@ -15,8 +15,9 @@ class QuestionsSeeder extends Seeder
     {
         Questions::factory()->insert([
             "id_questionnaire" => 1,
-            "titre_question" => fake()->sentence(2),
-            "ordre" => fake()->numberBetween(1, 25)
+            "titre_question" => "Comment s’est passé ton réveil ce matin ?",
+            "categorie" => "L'énergie au quotidien et vitalité",
+            "ordre" => 1
         ]);
     }
 }
