@@ -30,9 +30,16 @@
         </p>
 
         <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="{{ url('/') }}" class="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-500 shadow-lg shadow-orange-500/20 dark:shadow-orange-600/10 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-orange-500/50">
-                Retour à l'accueil
-            </a>
+            @guest
+                <a href="{{ url('/') }}" class="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-500 shadow-lg shadow-orange-500/20 dark:shadow-orange-600/10 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-orange-500/50">
+                    Retour à l'accueil
+                </a>
+            @endguest
+            @auth
+                <a href="{{ url('/dashboard') }}" class="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-500 shadow-lg shadow-orange-500/20 dark:shadow-orange-600/10 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-orange-500/50">
+                    Retour à la dashboard
+                </a>
+            @endauth
 
             <button onclick="window.history.back()" class="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-950/80 border border-blue-200/60 dark:border-blue-900/50 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-blue-500/30">
                 Page précédente
