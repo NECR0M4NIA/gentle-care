@@ -27,7 +27,7 @@
 </div>
 <p><a href="/history">Première fois sur le site</a></p> -->
 
-<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/assets/images/party.jpg');" 
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/assets/images/sunset-beach-bg-night.jpg');" 
       class="opacity-0 bg-cover bg-center bg-no-repeat flex flex-col h-screen w-screen overflow-hidden px-6 lg:px-24 lg:py-6">
     
     <div class="w-full sticky top-0 z-50">
