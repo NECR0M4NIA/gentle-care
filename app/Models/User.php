@@ -29,4 +29,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function reponses() {
+        return $this->hasMany(Reponse::class, "id_utilisateur");
+    }
+
+    public function resultats() {
+        return $this->hasMany(Resultat::class, "id_utilisateur");
+    }
 }
