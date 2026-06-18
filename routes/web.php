@@ -9,6 +9,11 @@ Route::get('/', function () {
     return view('home');
 })->middleware('guest');
 
+Route::get('/histoire', function () {
+    return view('history');
+})->middleware('guest');
+
+
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/videos', function () {
