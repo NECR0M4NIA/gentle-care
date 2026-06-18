@@ -25,56 +25,31 @@
     {{-- Système d'animation "fx" : anime chaque élément individuellement,
          au chargement de la page (s'il est déjà visible à l'écran)
          ET au défilement (dès qu'il entre dans le viewport). --}}
-    <style>
-        .fx {
-            opacity: 0;
-            transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1);
-            will-change: opacity, transform;
-        }
-        .fx-up    { transform: translateY(40px); }
-        .fx-down  { transform: translateY(-32px); }
-        .fx-scale { transform: scale(.9); }
-        .fx-left  { transform: translateX(-40px); }
-        .fx-right { transform: translateX(40px); }
-
-        .fx.is-visible {
-            opacity: 1;
-            transform: translate(0, 0) scale(1);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .fx {
-                transition: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
-        }
-    </style>
 </head>
 
 <body style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/assets/images/montagne.png');"
-      class="antialiased bg-cover bg-center bg-no-repeat bg-fixed min-h-screen w-screen flex flex-col px-6 lg:px-24">
+      class="antialiased bg-cover bg-center bg-no-repeat bg-fixed min-h-screen w-full overflow-x-hidden flex flex-col px-6 lg:px-24">
 
     {{-- Navbar inchangée : on garde le même include, seul le conteneur reçoit l'animation d'entrée --}}
-    <div class="fx fx-down w-full sticky top-0 z-50 pt-6" style="transition-delay:0s">
+    <div class="reveal fx fx-down w-full sticky top-0 z-50 pt-6" style="transition-delay:0s">
         @include('layouts.navbar')
     </div>
 
     <main class="flex flex-col gap-16 lg:gap-24 max-w-6xl w-full mx-auto py-10 lg:py-16">
 
         {{-- Section 1 : Qui sommes nous ? --}}
-        <section class="flex flex-col items-center gap-6 lg:gap-8">
-            <h2 class="fx fx-up text-white uppercase font-black text-4xl lg:text-6xl text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" style="transition-delay:.1s">
+        <section class="reveal flex flex-col items-center gap-6 lg:gap-8">
+            <h2 class="reveal fx fx-up text-white uppercase font-black text-4xl lg:text-6xl text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" style="transition-delay:.1s">
                 Qui sommes nous ?
             </h2>
 
-            <div class="w-full bg-black/25 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl p-6 lg:p-10 flex flex-col md:flex-row items-center gap-6 lg:gap-10">
-                <div class="fx fx-scale w-full md:w-2/5 max-w-xs aspect-square bg-white rounded-2xl shadow-lg flex items-center justify-center p-6" style="transition-delay:.25s">
+            <div class="reveal w-full bg-black/25 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl p-6 lg:p-10 flex flex-col md:flex-row items-center gap-6 lg:gap-10">
+                <div class="reveal fx fx-scale w-full md:w-2/5 max-w-xs aspect-square bg-white rounded-2xl shadow-lg flex items-center justify-center p-6" style="transition-delay:.25s">
                     {{-- Placeholder en attendant le logo définitif --}}
-                    <img src="/assets/images/montagne.png" alt="Logo Gentle Care (provisoire)" class="w-28 h-28 lg:w-36 lg:h-36 object-cover rounded-full shadow-inner">
+                    <img src="/assets/images/montagne.png" alt="Logo Gentle Care (provisoire)" class="reveal w-28 h-28 lg:w-36 lg:h-36 object-cover rounded-full shadow-inner">
                 </div>
-                <p class="fx fx-right text-white/90 leading-relaxed text-sm lg:text-base text-center md:text-left" style="transition-delay:.4s">
-                    Nous sommes un jeune groupe d'étudiants au sein de l'Eden School Paris, actuellement en deuxième année d'études. Notre groupe est composé d'étudiants de tous âges, comprises entre 15 et 19 ans, ce qui nous permet de bénéficier de points de vue variés et d'une grande richesse dans nos échanges.
+                <p class="reveal fx fx-right text-white/90 leading-relaxed text-sm lg:text-base text-center md:text-left" style="transition-delay:.4s">
+                    Nous sommes un jeune groupe d'étudiants au sein de l'Eden School Paris, actuellement en deuxième année d'études. Notre groupe est composé d'étudiants de tout âges, compris entre 15 et 19 ans, ce qui nous permet de bénéficier de points de vue variés et d'une grande richesse dans nos échanges.
                     <br><br>
                     Passionnés par les nouvelles technologies, la programmation et l'innovation numérique, nous développons nos compétences à travers différents projets et relevons de nouveaux défis ensemble.
                 </p>
@@ -82,25 +57,25 @@
         </section>
 
         {{-- Section 2 : Pourquoi nous avons créé ce site ? --}}
-        <section class="flex flex-col items-center gap-6 lg:gap-8">
-            <h2 class="fx fx-up text-white uppercase font-black text-4xl lg:text-6xl text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+        <section class="reveal flex flex-col items-center gap-6 lg:gap-8">
+            <h2 class="reveal fx fx-up text-white uppercase font-black text-4xl lg:text-6xl text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                 Pourquoi nous avons créé ce site ?
             </h2>
 
-            <div class="w-full bg-black/25 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl p-6 lg:p-10 flex flex-col md:flex-row items-center gap-6 lg:gap-10">
-                <p class="fx fx-left text-white/90 leading-relaxed text-sm lg:text-base" style="transition-delay:.1s">
+            <div class="reveal w-full bg-black/25 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl p-6 lg:p-10 flex flex-col md:flex-row items-center gap-6 lg:gap-10">
+                <p class="reveal fx fx-left text-white/90 leading-relaxed text-sm lg:text-base" style="transition-delay:.1s">
                     Nous avons créé ce site parce que, dans notre génération de plus en plus de personnes notamment les jeunes souffrent de dépression et de mal-être. C'est pour ça qu'il est important pour nous de bénéficier et de favoriser le bien-être de chacun.
                     <br><br>
                     Voilà la raison de l'existence de ce site, d'après nous tout le monde mérite d'obtenir du bonheur et surtout du bien-être.
                 </p>
-                <div class="fx fx-scale w-full md:w-2/5 aspect-[4/3] rounded-2xl border-4 border-[#FF8D28]/70 dark:border-[#4B83F5]/70 shadow-lg overflow-hidden" style="transition-delay:.25s">
+                <div class="reveal fx fx-scale w-full md:w-2/5 aspect-[4/3] rounded-2xl border-4 border-[#FF8D28]/70 dark:border-[#4B83F5]/70 shadow-lg overflow-hidden" style="transition-delay:.25s">
                     {{-- Placeholder en attendant la photo définitive --}}
-                    <img src="/assets/images/montagne.png" alt="Illustration mal-être (provisoire)" class="w-full h-full object-cover">
+                    <img src="/assets/images/montagne.png" alt="Illustration mal-être (provisoire)" class="reveal w-full h-full object-cover">
                 </div>
             </div>
 
-            <div class="fx fx-up w-full flex justify-end" style="transition-delay:.15s">
-                <a href="/" class="inline-block bg-[#F8B803] hover:bg-[#dba502] text-[#1b1b18] font-bold px-8 py-3 rounded-full shadow-md transition-all duration-200 hover:scale-105 active:scale-95">
+            <div class="reveal fx fx-up w-full flex justify-end" style="transition-delay:.15s">
+                <a href="/" class="reveal inline-block bg-[#F8B803] hover:bg-[#dba502] text-[#1b1b18] font-bold px-8 py-3 rounded-full shadow-md transition-all duration-200 hover:scale-105 active:scale-95">
                     Suivant
                 </a>
             </div>
@@ -115,32 +90,7 @@
     <p class="fx fx-up text-center text-gray-300 mb-6 text-sm" style="transition-delay:.1s">© Gentle Care 2026 - Tous droits réservés</p>
 
     <script src="/assets/js/anims.js"></script>
-    <script>
-        // Anime chaque élément ".fx" : au chargement s'il est déjà dans le viewport,
-        // sinon dès qu'il y entre pendant le défilement.
-        document.addEventListener('DOMContentLoaded', function () {
-            var targets = document.querySelectorAll('.fx');
 
-            if (!('IntersectionObserver' in window)) {
-                targets.forEach(function (el) { el.classList.add('is-visible'); });
-                return;
-            }
-
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -60px 0px'
-            });
-
-            targets.forEach(function (el) { observer.observe(el); });
-        });
-    </script>
 </body>
 
 </html>
