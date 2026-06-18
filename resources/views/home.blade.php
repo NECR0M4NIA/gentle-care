@@ -50,10 +50,10 @@
                 difficiles ou ne se sentent pas bien. Notre objectif est d'offrir un espace interactif et apaisant pour aider chacun à retrouver
                 un peu de sérénité et à prendre soin de sa santé mentale.
             </p>
-            <a class="reveal inline-block bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="">
+            <a class="reveal inline-block bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="/histoireq">
                 Première fois sur le site ?
             </a>
-        </div>
+        </div> <a href=""></a>
 
         <div class="reveal w-full md:w-1/2 flex justify-center max-h-[50vh] md:max-h-[70vh]">
             <img class="rounded-xl max-w-full max-h-full object-contain drop-shadow-[0_0_32px_rgba(0,0,0,0.3)]" src="/assets/images/tablet-item.png" alt="Aperçu tablette">
