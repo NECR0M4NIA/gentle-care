@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             $el.animate([
-                { transform: 'translateY(30px)', opacity: 0, filter: 'blur(15px)' },
-                { transform: 'translateY(15px)', opacity: 0.5, filter: 'blur(7.5px)' },
-                { transform: 'translateY(0)', opacity: 1, filter: 'blur(0px)' }
+                { transform: 'scale(0.5) translateY(30px)', opacity: 0, filter: 'blur(15px)' },
+                { transform: 'scale(0.75) translateY(15px)', opacity: 0.5, filter: 'blur(7.5px)' },
+                { transform: 'scale(1) translateY(0)', opacity: 1, filter: 'blur(0px)' }
             ], {
                 duration: 1200,
                 easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
