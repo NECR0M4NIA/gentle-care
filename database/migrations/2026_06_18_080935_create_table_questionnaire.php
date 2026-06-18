@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("reponses_utilisateurs", function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("id_user")->constrained("users")->cascadeOnDelete();
-            $table->foreignId("id_choix")->constrained("choix_predefinis")->cascadeOnDelete();
-            $table->unique(["id_user", "id_choix"]);
+        Schema::create('questionnaires', function (Blueprint $table) {
+            $table->id("id_questionnaire");
+            $table->string("titre_questionnaire");
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists("reponses_utilisateurs");
+        Schema::dropIfExists('questionnaires');
     }
 };

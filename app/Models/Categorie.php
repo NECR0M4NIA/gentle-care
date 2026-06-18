@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Questionnaire extends Model
+class Categorie extends Model
 {
+
     use HasFactory;
 
-    protected $fillable = ["titre_questionnaire"];
+    protected $fillable = ["nom_categorie"];
 
     public function questions(): HasMany {
-        return $this->hasMany(Question::class, "id_questionnaire");
+        return $this->hasMany(Question::class, "id_categorie");
     }
 }

@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("choix_predefinis", function (Blueprint $table) {
-            $table->id();
-            $table->foreignId("id_question")->constrained("questions")->cascadeOnDelete();
-            $table->unique(["id_question"]);
-            $table->string("titre_choix") ;
-            $table->integer("valeur_score");
+        Schema::create('resultats', function (Blueprint $table) {
+            $table->id("id_resultat");
+            $table->integer("score_total");
+            $table->date("date_resultat");
+
+            $table->foreignId("id_utilisateur")->constrained("users", "id_utilisateur")->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists("choix_predefinis");
+        Schema::dropIfExists('resultats');
     }
 };
