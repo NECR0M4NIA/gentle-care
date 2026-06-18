@@ -15,11 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(24)->create();
+        // Enlevez le commentaire juste en bas si vous avez fait un migrate:fresh juste avant
+        // User::factory(24)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            CategorieSeeder::class,
+            QuestionnaireSeeder::class,
+            QuestionsSeeder::class,
+            ChoixSeeder::class,
+            ReponseSeeder::class,
+            ResultatSeeder::class,
         ]);
     }
 }

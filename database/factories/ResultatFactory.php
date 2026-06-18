@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\ChoixPredefini;
+use App\Models\Resultat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<ChoixPredefini>
+ * @extends Factory<Resultat>
  */
-class ChoixPredefiniFactory extends Factory
+class ResultatFactory extends Factory
 {
     /**
      * Define the model's default state.

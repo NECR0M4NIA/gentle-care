@@ -14,8 +14,8 @@ class QuestionnaireSeeder extends Seeder
     public function run(): void
     {
         Questionnaire::factory()->insert([
-            "titre_questionnaire" => fake()->sentence(2),
-            "description" => fake()->text()
+            "id_questionnaire" => 1,
+            "titre_questionnaire" => "Questionnaire du bien-être",
         ]);
     }
 }

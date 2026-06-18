@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string("titre_question");
             $table->integer("ordre");
 
-            $table->foreignId("id_questionnaire")->constrained("questionnaire", "id_questionnaire")->cascadeOnDelete();
-            $table->foreignId("id_categorie")->constrained("categorie", "id_categorie")->cascadeOnDelete();
+            $table->foreignId("id_questionnaire")->constrained("questionnaires", "id_questionnaire")->cascadeOnDelete();
+            $table->foreignId("id_categorie")->constrained("categories", "id_categorie")->cascadeOnDelete();
             $table->timestamps();
         });
     }

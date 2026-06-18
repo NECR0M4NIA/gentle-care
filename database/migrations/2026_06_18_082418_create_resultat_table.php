@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resultat', function (Blueprint $table) {
-            $table->id();
+        Schema::create('resultats', function (Blueprint $table) {
+            $table->id("id_resultat");
             $table->integer("score_total");
             $table->date("date_resultat");
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resultat');
+        Schema::dropIfExists('resultats');
     }
 };
