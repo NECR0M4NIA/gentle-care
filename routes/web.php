@@ -31,6 +31,10 @@ Route::get('/avis', function () {
     return view('avis');
 })->middleware(['auth', 'verified'])->name('avis');
 
+Route::get('/quiz', function () {
+    return view('quiz');
+})->middleware(['auth', 'verified'])->name('quiz');
+
 // ADMIN //
 Route::get('/admin', function () {
     return view('admin');
