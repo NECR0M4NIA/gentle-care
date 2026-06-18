@@ -1,7 +1,7 @@
 <nav class="flex flex-row items-center bg-white/30 dark:bg-white/10 backdrop-blur-md border border-white/40 rounded-2xl w-full justify-between py-6 px-6 shadow-lg">
     <div class="flex gap-6 text-white font-medium">
-        <a class="block dark:hidden transition pointer hover:opacity-[0.5] hover:scale-[1.05]" href=""><img class="w-[56px]" src="/assets/icons/gentle-care-orange.svg" alt=""></a>
-        <a class="hidden dark:block transition pointer hover:opacity-[0.5] hover:scale-[1.05]" href=""><img class="w-[56px]" src="/assets/icons/gentle-care-blue.svg" alt=""></a>
+        <a class="block dark:hidden transition pointer hover:opacity-[0.5] hover:scale-[1.05]" href="/"><img class="w-[56px]" src="/assets/icons/gentle-care-orange.svg" alt=""></a>
+        <a class="hidden dark:block transition pointer hover:opacity-[0.5] hover:scale-[1.05]" href="/"><img class="w-[56px]" src="/assets/icons/gentle-care-blue.svg" alt=""></a>
     </div>
     <h1 class="text-4xl text-white font-bold drop-shadow-sm">Gentle Care</h1>
     <div class="flex flex-row gap-4 items-center">
