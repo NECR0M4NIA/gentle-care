@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Enlevez le commentaire juste en bas si vous avez fait un migrate:fresh juste avant
+        // Enlevez le commentaire juste en bas si vous avez fait un migrate:fresh juste avant et remettez le en commentaire
         // User::factory(24)->create();
 
         $this->call([
