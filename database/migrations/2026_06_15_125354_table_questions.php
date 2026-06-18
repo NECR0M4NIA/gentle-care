@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId("id_questionnaire")->constrained("questionnaires")->cascadeOnDelete();
             $table->unique(["id_questionnaire"]);
             $table->string("titre_question");
+            $table->string("categorie");
             $table->integer("ordre");
             $table->timestamps();
         });
