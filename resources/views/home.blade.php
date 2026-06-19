@@ -27,25 +27,25 @@
 </div>
 <p><a href="/history">Première fois sur le site</a></p> -->
 
-<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/assets/images/sunset-beach-bg.png');" 
+<body style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/assets/images/sunset-beach-bg-night.jpg');" 
       class="opacity-0 bg-cover bg-center bg-no-repeat flex flex-col h-screen w-screen overflow-hidden px-6 lg:px-24 lg:py-6">
     
-    <div class="reveal w-full sticky top-0 z-50">
+    <div class="w-full sticky top-0 z-50">
         @include('layouts.navbar')
     </div>
 
-    <div class="reveal flex flex-col md:flex-row items-center gap-8 flex-grow justify-center min-h-0 overflow-hidden">
+    <div class="flex flex-col md:flex-row items-center gap-8 flex-grow justify-center min-h-0 overflow-hidden">
         
-        <div class="reveal flex flex-col w-full md:w-1/2 items-start gap-6 lg:gap-10">
+        <div class="flex flex-col w-full md:w-1/2 items-start gap-6 lg:gap-10">
             <h1 style="font-size: 7rem; line-height: 1; background-image: linear-gradient(to bottom, #F2A154, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" 
-                class="reveal inline dark:hidden uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                class="inline dark:hidden uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                 Gentle Care
             </h1>
             <h1 style="font-size: 7rem; line-height: 1; background-image: linear-gradient(to bottom, #4B83F5, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" 
-                class="reveal hidden dark:block uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                class="hidden dark:block uppercase font-black tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                 Gentle Care
             </h1>
-            <p class="reveal text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] leading-relaxed text-base lg:text-xl max-w-xl">
+            <p class="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] leading-relaxed text-base lg:text-xl max-w-xl">
                 Gentle Care est une plateforme web bienveillante conçue pour accompagner au quotidien les personnes qui traversent des moments
                 difficiles ou ne se sentent pas bien. Notre objectif est d'offrir un espace interactif et apaisant pour aider chacun à retrouver
                 un peu de sérénité et à prendre soin de sa santé mentale.
@@ -53,17 +53,18 @@
             <a class="reveal inline-block bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="/histoire">
                 Première fois sur le site ?
             </a>
-        </div> <a href=""></a>
+        </div>
 
-        <div class="reveal w-full md:w-1/2 flex justify-center max-h-[50vh] md:max-h-[70vh]">
-            <img class="rounded-xl max-w-full max-h-full object-contain drop-shadow-[0_0_32px_rgba(0,0,0,0.3)]" src="/assets/images/tablet-item.png" alt="Aperçu tablette">
+        <div class="w-full md:w-1/2 flex justify-center max-h-[50vh] md:max-h-[70vh]">
+            <img class="inline dark:hidden rounded-xl max-w-full max-h-full object-contain drop-shadow-[0_0_32px_rgba(0,0,0,0.3)]" src="/assets/images/tablet-item.png" alt="Aperçu tablette">
+            <img class="hidden dark:block rounded-xl max-w-full max-h-full object-contain drop-shadow-[0_0_32px_rgba(0,0,0,0.3)]" src="/assets/images/party.jpg" alt="Aperçu fête">
         </div>
     </div>
 
-    <div class="reveal w-full sticky top-0 z-0">
+    <div class="w-full sticky top-0 z-0">
         @include('layouts.footer')
     </div>
-    <p class="reveal text-center text-gray-500 mt-8">© Gentle Care 2026 - Tous droits réservés</p>
+    <p class="text-center text-gray-500 mt-8">© Gentle Care 2026 - All rights reserved</p>
 
     <script src="/assets/js/anims.js"></script>
 </body>

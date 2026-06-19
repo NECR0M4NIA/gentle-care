@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\QuestionnaireController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,9 +37,17 @@ Route::get('/avis', function () {
     return view('avis');
 })->middleware(['auth', 'verified'])->name('avis');
 
-Route::get('/quiz', function () {
-    return view('quiz');
-})->middleware(['auth', 'verified'])->name('quiz');
+Route::get('/questionnaire/{id}', [QuestionnaireController::class, 'beginQuestionnaire'])->middleware(['auth', 'verified'])->name('questionnaire.beginQuestionnaire');
+
+
+
+
+
+
+
+
+
+
 
 // ADMIN //
 Route::get('/admin', function () {

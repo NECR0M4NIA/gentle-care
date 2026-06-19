@@ -2,18 +2,24 @@
     style="background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15);">
 
     {{-- Liens --}}
+    @if(auth()->user() && auth()->user()->role === 'user')
     <x-nav-link :active="request()->routeIs('dashboard')" :href="route('dashboard')" class="text-white font-semibold hover:text-blue-300 transition">Dashboard</x-nav-link>
     <x-nav-link :active="request()->routeIs('videos')" :href="route('videos')" class="text-white font-semibold hover:text-blue-300 transition">Vidéos</x-nav-link>
     <x-nav-link :active="request()->routeIs('anti-stress')" :href="route('anti-stress')" class="text-white font-semibold hover:text-blue-300 transition">Anti-stress</x-nav-link>
     <x-nav-link :active="request()->routeIs('playground')" :href="route('playground')" class="text-white font-semibold hover:text-blue-300 transition">Playground</x-nav-link>
     <x-nav-link :active="request()->routeIs('a-propos')" :href="route('a-propos')" class="text-white font-semibold hover:text-blue-300 transition">À Propos</x-nav-link>
     <x-nav-link :active="request()->routeIs('avis')" :href="route('avis')" class="text-white font-semibold hover:text-blue-300 transition">Avis</x-nav-link>
+    @else
+    <x-nav-link :active="request()->routeIs('dashboard')" :href="route('dashboard')" class="text-white font-semibold hover:text-blue-300 transition">Dashboard</x-nav-link>
+    <x-nav-link :active="request()->routeIs('admin')" :href="route('admin')" class="text-white font-semibold hover:text-blue-300 transition">Admin</x-nav-link>
+    @endif
 
-        {{-- Avatar --}}
+    {{-- Avatar --}}
     {{-- Dans ta navbar, remplace le bouton user par ceci --}}
     <div class="relative" x-data="{ open: false }">
 
         {{-- Bouton avatar --}}
+        @if(auth()->user() && auth()->user()->role === 'user')
         <button @click="open = !open" @click.outside="open = false"
             class="w-9 h-9 rounded-full flex items-center justify-center transition"
             style="background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.3);"
@@ -24,6 +30,18 @@
                 <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
             </svg>
         </button>
+        @else
+        <button @click="open = !open" @click.outside="open = false"
+            class="w-9 h-9 rounded-full flex items-center justify-center transition"
+            style="background: rgba(255, 115, 0, 0.15); border: 1.5px solid rgba(255, 123, 0, 0.28);"
+            aria-label="Menu utilisateur">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+        </button>
+        @endif
 
         {{-- Dropdown --}}
         <div x-show="open" x-transition
