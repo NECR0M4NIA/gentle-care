@@ -10,12 +10,15 @@
 
                 <div class="reveal opacity-0 flex items-center bg-white/30 dark:bg-white/10 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg px-4 py-3 hover:bg-white/40 dark:hover:bg-white/20 transition">
 
-                    <div class="reveal opacity-0 text-white/80 mr-3 flex items-center">
+                    <button
+                        type="submit"
+                        class="reveal opacity-0 text-white/80 mr-3 flex items-center hover:text-white transition cursor-pointer"
+                        aria-label="Rechercher">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m21 21-4.35-4.35m1.85-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
                         </svg>
-                    </div>
+                    </button>
 
                     <input
                         type="text"
