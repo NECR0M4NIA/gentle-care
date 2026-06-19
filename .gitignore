@@ -25,3 +25,12 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# MySQL data files
+mysql/
+*.sdi
+*.sock
+*.ibd
+*.frm
+*.MYD
+*.MYI
+*.pid
