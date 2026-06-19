@@ -22,28 +22,25 @@
         x-init="init()"
         :class="bgClass">
 
-        {{-- ══════════════════════════════════════════════
-             ÉCRAN ACCUEIL
-        ══════════════════════════════════════════════ --}}
         <section x-show="phase === 'home'" x-transition:enter="transition ease-out duration-500"
             x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
             class="flex flex-col items-center justify-center h-full w-full px-6 text-center">
 
-            <p class="text-sm font-medium uppercase tracking-widest mb-3"
+            <p class="reveal text-sm font-medium uppercase tracking-widest mb-3"
                 :class="isDark ? 'text-sky-400' : 'text-orange-400'">Exercice de respiration</p>
 
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight"
+            <h1 class="reveal text-4xl md:text-5xl font-bold mb-4 leading-tight"
                 :class="isDark ? 'text-slate-100' : 'text-slate-800'">
                 Prenez un moment<br>pour vous.
             </h1>
 
-            <p class="text-base max-w-sm mb-12 leading-relaxed"
+            <p class="reveal text-base max-w-sm mb-12 leading-relaxed"
                 :class="isDark ? 'text-slate-400' : 'text-slate-500'">
                 Choisissez une durée et laissez-vous guider dans un exercice de respiration apaisante.
             </p>
 
             {{-- Grille des durées --}}
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 w-full max-w-lg">
+            <div class="reveal grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 w-full max-w-lg">
                 <template x-for="opt in durationOptions" :key="opt.value">
                     <button @click="selectDuration(opt.value)"
                         :class="[
@@ -58,7 +55,7 @@
             </div>
 
             {{-- Durée personnalisée --}}
-            <div class="flex items-center gap-3 mb-10">
+            <div class="reveal flex items-center gap-3 mb-10">
                 <label class="text-sm" :class="isDark ? 'text-slate-400' : 'text-slate-500'">Personnalisé :</label>
                 <input type="number" min="1" max="60" x-model.number="customMinutes"
                     @input="selectDuration('custom')"
@@ -72,7 +69,7 @@
             {{-- Bouton démarrer --}}
             <button @click="startSession()"
                 :disabled="!selectedDuration"
-                class="px-10 py-4 rounded-xl text-white font-bold text-base transition-all duration-200 shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+                class="reveal px-10 py-4 rounded-xl text-white font-bold text-base transition-all duration-200 shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
                 :class="isDark
                     ? 'bg-sky-600 hover:bg-sky-500 hover:shadow-sky-700/40 hover:scale-105 shadow-sky-900/50'
                     : 'bg-orange-500 hover:bg-orange-400 hover:shadow-orange-300/50 hover:scale-105 shadow-orange-200'">
@@ -179,4 +176,5 @@
     </div>
 
     <script src="assets/js/meditation.js"></script>
+    <script src="/assets/js/anims.js"></script>
 </x-app-layout>

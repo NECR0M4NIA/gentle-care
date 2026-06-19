@@ -15,7 +15,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-cover bg-center bg-no-repeat"
+<body class="overflow-y-auto pt-[78px] bg-cover bg-center bg-no-repeat bg-fixed"
       style="background-image: url('/assets/images/forest-night.jpg');">
     <div class="min-h-screen">
         @include('layouts.navigation')
