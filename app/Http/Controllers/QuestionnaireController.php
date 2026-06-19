@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use App\Models\Reponse;
 use App\Models\Resultat;
+use App\Services\YoutubeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,12 +54,12 @@ class QuestionnaireController extends Controller
 
     public function resultat(int $id_questionnaire)
     {
-        $questions = Question::where('id_questionnaire', $id_questionnaire)
+        $ids_questions = Question::where('id_questionnaire', $id_questionnaire)
             ->pluck('id_question');
 
         $reponses = Reponse::with('choix')
             ->where('id_utilisateur', Auth::id())
-            ->whereIn('id_question', $questions)
+            ->whereIn('id_question', $ids_questions)
             ->get();
 
         $score = $reponses->sum('choix.valeur_choix');
@@ -67,8 +68,17 @@ class QuestionnaireController extends Controller
             'id_utilisateur' => Auth::id(),
             'score_total'    => $score,
             'date_resultat'  => now()->toDateString(),
-        ]);
+        ]); 
 
-        return view('resultat', compact('score'));
+        $videos = [];
+        if($score <=40) {
+            $youtube = new YoutubeService();
+            $videos = $youtube->search('exercice respiration guidée stress');
+        } elseif ($score >= 41) {
+            $youtube = new YoutubeService();
+            $videos = $youtube->search('méditation apaisante anxiété soutien');
+        }
+
+        return view('resultat', compact('score', 'videos'));
     }
 }
