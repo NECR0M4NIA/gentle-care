@@ -1,13 +1,12 @@
 <style>
-    /* 1. On bloque le scroll sur l'ensemble de la page */
-    html, body {
+    html,
+    body {
         overflow: hidden !important;
         height: 100dvh !important;
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    /* 2. On force le contenu principal du layout à faire exactement la taille de l'écran */
     #meditationApp {
         height: 100dvh !important;
         width: 100vw !important;
@@ -18,7 +17,7 @@
 <x-app-layout>
     {{-- resources/views/meditation.blade.php --}}
 
-    <div id="meditationApp" class="h-dvh w-full transition-colors duration-1000 ease-in-out font-sans"
+    <div id="meditationApp" class="h-dvh w-full bg-[#0000005f] transition-colors duration-1000 ease-in-out font-sans"
         x-data="meditation()"
         x-init="init()"
         :class="bgClass">
@@ -48,7 +47,7 @@
                 <template x-for="opt in durationOptions" :key="opt.value">
                     <button @click="selectDuration(opt.value)"
                         :class="[
-                            'py-4 rounded-2xl font-semibold text-sm transition-all duration-200 border-2',
+                            'py-4 rounded-lg font-semibold text-sm transition-all duration-200 border-2',
                             selectedDuration === opt.value
                                 ? (isDark ? 'bg-sky-600 border-sky-500 text-white scale-105' : 'bg-orange-500 border-orange-400 text-white scale-105')
                                 : (isDark ? 'bg-slate-800 border-slate-700 text-slate-300 hover:border-sky-600 hover:text-sky-300' : 'bg-white border-slate-200 text-slate-600 hover:border-orange-300 hover:text-orange-500')
@@ -63,7 +62,7 @@
                 <label class="text-sm" :class="isDark ? 'text-slate-400' : 'text-slate-500'">Personnalisé :</label>
                 <input type="number" min="1" max="60" x-model.number="customMinutes"
                     @input="selectDuration('custom')"
-                    class="w-20 text-center py-2 px-3 rounded-xl border-2 text-sm font-semibold outline-none transition-all"
+                    class="w-20 text-center py-2 px-3 rounded-lg border-2 text-sm font-semibold outline-none transition-all"
                     :class="isDark
                         ? 'bg-slate-800 border-slate-600 text-slate-200 focus:border-sky-500'
                         : 'bg-white border-slate-200 text-slate-700 focus:border-orange-400'" />
@@ -73,7 +72,7 @@
             {{-- Bouton démarrer --}}
             <button @click="startSession()"
                 :disabled="!selectedDuration"
-                class="px-10 py-4 rounded-full text-white font-bold text-base transition-all duration-200 shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+                class="px-10 py-4 rounded-xl text-white font-bold text-base transition-all duration-200 shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
                 :class="isDark
                     ? 'bg-sky-600 hover:bg-sky-500 hover:shadow-sky-700/40 hover:scale-105 shadow-sky-900/50'
                     : 'bg-orange-500 hover:bg-orange-400 hover:shadow-orange-300/50 hover:scale-105 shadow-orange-200'">
@@ -179,191 +178,5 @@
         </section>
     </div>
 
-    <script>
-        function meditation() {
-            return {
-                isDark: window.matchMedia('(prefers-color-scheme: dark)').matches,
-                phase: 'home',
-
-                durationOptions: [{
-                        label: '1 minute',
-                        value: 1
-                    },
-                    {
-                        label: '2 minutes',
-                        value: 2
-                    },
-                    {
-                        label: '5 minutes',
-                        value: 5
-                    },
-                    {
-                        label: '10 minutes',
-                        value: 10
-                    },
-                ],
-                selectedDuration: null,
-                customMinutes: 3,
-
-                totalSeconds: 0,
-                remaining: 0,
-                sessionTimer: null,
-                stepTimer: null,
-                countdown: 4,
-                countdownTimer: null,
-
-                stepIndex: 0,
-                // Synchronisation des clés JS avec les scales demandés par le HTML
-                steps: [{
-                        key: 'inhale',
-                        eyebrow: 'Inspirez',
-                        phrase: 'Respirez profondément',
-                        subPhrase: 'Remplissez vos poumons lentement...',
-                        duration: 4000,
-                        scaleInner: 1.4,
-                        scaleOuter: 1.7,
-                        gradientDark: 'radial-gradient(circle, #3b82f6, #1d4ed8)',
-                        gradientLight: 'radial-gradient(circle, #fb923c, #ea580c)',
-                        haloColorDark: '#3b82f6',
-                        haloColorLight: '#fed7aa',
-                    },
-                    {
-                        key: 'hold',
-                        eyebrow: 'Retenez',
-                        phrase: 'Gardez votre souffle',
-                        subPhrase: 'Restez dans ce calme...',
-                        duration: 2000, // Passé à 2s pour que ce soit humainement agréable
-                        scaleInner: 1.4,
-                        scaleOuter: 1.7,
-                        gradientDark: 'radial-gradient(circle, #818cf8, #4338ca)',
-                        gradientLight: 'radial-gradient(circle, #fdba74, #f97316)',
-                        haloColorDark: '#818cf8',
-                        haloColorLight: '#fed7aa',
-                    },
-                    {
-                        key: 'exhale',
-                        eyebrow: 'Expirez',
-                        phrase: 'Relâchez tout',
-                        subPhrase: 'Laissez partir les tensions...',
-                        duration: 6000,
-                        scaleInner: 0.8,
-                        scaleOuter: 1.0,
-                        gradientDark: 'radial-gradient(circle, #38bdf8, #0369a1)',
-                        gradientLight: 'radial-gradient(circle, #f97316, #c2410c)',
-                        haloColorDark: '#38bdf8',
-                        haloColorLight: '#fed7aa',
-                    },
-                    {
-                        key: 'pause',
-                        eyebrow: 'Pause',
-                        phrase: 'Détendez-vous',
-                        subPhrase: 'Sentez le calme vous envahir...',
-                        duration: 2000, // Passé à 2s
-                        scaleInner: 0.8,
-                        scaleOuter: 1.0,
-                        gradientDark: 'radial-gradient(circle, #2dd4bf, #0f766e)',
-                        gradientLight: 'radial-gradient(circle, #fb923c, #ea580c)',
-                        haloColorDark: '#2dd4bf',
-                        haloColorLight: '#fdba74',
-                    },
-                ],
-
-                get currentStep() {
-                    return this.steps[this.stepIndex];
-                },
-
-                get progressPercent() {
-                    if (this.totalSeconds === 0) return 0;
-                    return ((this.totalSeconds - this.remaining) / this.totalSeconds) * 100;
-                },
-
-                get bgClass() {
-                    if (this.phase !== 'session') {
-                        return this.isDark ? 'bg-[#0f1f3d] text-slate-100' : 'bg-white text-slate-800';
-                    }
-                    const key = this.currentStep?.key;
-                    if (this.isDark) {
-                        const map = {
-                            inhale: 'bg-[#0d2154]',
-                            hold: 'bg-[#11195e]',
-                            exhale: 'bg-[#0c1a3a]',
-                            pause: 'bg-[#0a1f35]',
-                        };
-                        return (map[key] || 'bg-[#0f1f3d]') + ' text-slate-100';
-                    } else {
-                        const map = {
-                            inhale: 'bg-[#fff7f0]',
-                            hold: 'bg-[#fef3e8]',
-                            exhale: 'bg-[#fffbf5]',
-                            pause: 'bg-[#fef9f4]',
-                        };
-                        return (map[key] || 'bg-white') + ' text-slate-800';
-                    }
-                },
-
-                init() {
-                    // Plus besoin d'initialiser des tailles fixes en JS
-                },
-
-                selectDuration(val) {
-                    this.selectedDuration = val;
-                },
-
-                formatTime(secs) {
-                    const m = String(Math.floor(secs / 60)).padStart(2, '0');
-                    const s = String(secs % 60).padStart(2, '0');
-                    return `${m}:${s}`;
-                },
-
-                startSession() {
-                    if (!this.selectedDuration) return;
-                    const mins = this.selectedDuration === 'custom' ? (this.customMinutes || 1) : this.selectedDuration;
-                    this.totalSeconds = mins * 60;
-                    this.remaining = this.totalSeconds;
-                    this.stepIndex = 0;
-                    this.phase = 'session';
-
-                    this.$nextTick(() => {
-                        this.runStep();
-                        this.sessionTimer = setInterval(() => {
-                            this.remaining--;
-                            if (this.remaining <= 0) {
-                                this.stopSession(true);
-                            }
-                        }, 1000);
-                    });
-                },
-
-                runStep() {
-                    clearTimeout(this.stepTimer);
-                    clearInterval(this.countdownTimer);
-
-                    const step = this.steps[this.stepIndex];
-
-                    const hasCd = step.key === 'inhale' || step.key === 'exhale';
-                    if (hasCd) {
-                        const cdSecs = Math.round(step.duration / 1000);
-                        this.countdown = cdSecs;
-                        this.countdownTimer = setInterval(() => {
-                            this.countdown = Math.max(0, this.countdown - 1);
-                        }, 1000);
-                    } else {
-                        this.countdown = 0;
-                    }
-
-                    this.stepTimer = setTimeout(() => {
-                        this.stepIndex = (this.stepIndex + 1) % this.steps.length;
-                        this.runStep();
-                    }, step.duration);
-                },
-
-                stopSession(finished = false) {
-                    clearInterval(this.sessionTimer);
-                    clearTimeout(this.stepTimer);
-                    clearInterval(this.countdownTimer);
-                    this.phase = finished ? 'done' : 'home';
-                },
-            };
-        }
-    </script>
+    <script src="assets/js/meditation.js"></script>
 </x-app-layout>
