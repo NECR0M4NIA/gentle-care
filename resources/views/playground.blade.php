@@ -64,7 +64,7 @@
                                     <p class="text-sm font-semibold text-gray-300">NECRO MANIA</p>
                                 </div>
                             </div>
-                            <a href="https://necr0m4nia.github.io/tic-tac-toe/" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-[#31C3BD] hover:bg-cyan-800 rounded-xl transition-colors">
+                            <a href="https://necr0m4nia.github.io/tic-tac-toe/" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-[#31C3BD] hover:bg-cyan-800 rounded-xl transition-colors">
                                 Jouer
                             </a>
                         </div>
