@@ -1,14 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            À Propos
-        </h2>
-    </x-slot>
 
     <div class="reveal opacity-0 max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-12">
-        <h1 class="text-6xl text-white text-center my-8 font-bold">L’équipe du projet</h1>
+        <h1 class="text-6xl text-white text-center my-24 font-bold">L’équipe du projet</h1>
 
-        <div class="reveal flex flex-col md:flex-row items-center justify-between bg-gray-500 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+        <div class="reveal flex flex-col md:flex-row items-center justify-between bg-gray-500/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
             <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/jajoudev.png" alt="JajouDev">
 
@@ -34,7 +29,7 @@
             </div>
         </div>
 
-        <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-[#2600FF]/10 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+        <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-[#2600FF]/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
             <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/forcerion.png" alt="JajouDev">
 
@@ -60,7 +55,7 @@
             </div>
         </div>
 
-        <div class="reveal flex flex-col md:flex-row items-center justify-between bg-[#6e7346] rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+        <div class="reveal flex flex-col md:flex-row items-center justify-between bg-[#6e7346]/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
             <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/fonceurok.png" alt="JajouDev">
 
@@ -86,7 +81,7 @@
             </div>
         </div>
 
-        <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-blue-950 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+        <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-blue-950/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
             <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/necromania.png" alt="JajouDev">
 
