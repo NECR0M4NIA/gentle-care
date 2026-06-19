@@ -20,6 +20,7 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['au
 
 
 Route::get('/videos', [VideoController::class, 'index'])
+    ->middleware(['auth', 'verified'])
     ->name('videos');
 
 Route::get('/videos/{id}', [VideoController::class, 'show'])
