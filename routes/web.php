@@ -41,7 +41,11 @@ Route::get('/avis', function () {
     return view('avis');
 })->middleware(['auth', 'verified'])->name('avis');
 
-Route::get('/questionnaire/{id}', [QuestionnaireController::class, 'beginQuestionnaire'])->middleware(['auth', 'verified'])->name('questionnaire.beginQuestionnaire');
+Route::middleware(['auth'])->group(function () {
+Route::get('/questionnaire/{id_questionnaire}/resultat', [QuestionnaireController::class, 'resultat'])->name('questionnaire.resultat');
+Route::get('/questionnaire/{id_questionnaire}/{ordre?}', [QuestionnaireController::class, 'show'])->name('questionnaire.show');
+Route::post('/questionnaire/{id_questionnaire}/store', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
+});
 
 
 
@@ -68,4 +72,4 @@ Route::middleware('auth')->group(function () {
 Route::fallback([PageController::class, 'notfound']);
 Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

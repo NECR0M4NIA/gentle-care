@@ -10,6 +10,8 @@ class Reponse extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_reponse';
+
     protected $fillable = ["id_utilisateur", "id_question", "id_choix"];
 
     public function utilisateur(): BelongsTo

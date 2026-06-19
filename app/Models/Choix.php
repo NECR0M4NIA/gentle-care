@@ -10,6 +10,8 @@ class Choix extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_choix';
+
     protected $fillable = ["nom_choix", "valeur_choix", "id_question"];
 
     public function question(): BelongsTo {

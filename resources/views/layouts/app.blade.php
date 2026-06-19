@@ -17,7 +17,7 @@
 
 <body class="min-h-screen bg-cover bg-center bg-no-repeat"
       style="background-image: url('/assets/images/forest-night.jpg');">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
