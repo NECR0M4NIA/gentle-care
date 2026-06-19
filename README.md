@@ -81,6 +81,8 @@ rm package-lock.json
 npm install
 
 npm run dev
+
+npm.cmd run dev
 ```
 
 Éventuellement, modifier ces données dans le fichier .env si il y a des erreurs avec Breeze:
