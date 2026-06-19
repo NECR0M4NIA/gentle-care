@@ -50,7 +50,7 @@
                 difficiles ou ne se sentent pas bien. Notre objectif est d'offrir un espace interactif et apaisant pour aider chacun à retrouver
                 un peu de sérénité et à prendre soin de sa santé mentale.
             </p>
-            <a class="inline-block bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="">
+            <a class="reveal inline-block bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200" href="/histoire">
                 Première fois sur le site ?
             </a>
         </div>
