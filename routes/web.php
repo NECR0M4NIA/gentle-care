@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QuestionnaireController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +18,12 @@ Route::get('/histoire', function () {
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/videos', function () {
-    return view('videos');
-})->middleware(['auth', 'verified'])->name('videos');
+
+Route::get('/videos', [VideoController::class, 'index'])
+    ->name('videos');
+
+Route::get('/videos/{id}', [VideoController::class, 'show'])
+    ->name('videos.show');
 
 Route::get('/anti-stress', function () {
     return view('anti-stress');
