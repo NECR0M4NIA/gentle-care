@@ -11,6 +11,8 @@ class Questionnaire extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_questionnaire';
+
     protected $fillable = ["titre_questionnaire"];
 
     public function questions(): HasMany {

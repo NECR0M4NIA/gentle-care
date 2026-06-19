@@ -14,21 +14,22 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["titre_questionnaire", "ordre", "id_questionnaire", "id_categorie"];
+    protected $primaryKey = 'id_question';
 
-    public function questionnaire(): BelongsTo {
-        return $this->belongsTo(Questionnaire::class, "id_questionnaire");
-    } 
-    
-    public function categorie(): BelongsTo {
-        return $this->belongsTo(Categorie::class, "id_categorie");
+    protected $fillable = ["titre_question", "ordre", "id_questionnaire", "id_categorie"];
+
+    public function categorie(): BelongsTo
+    {
+        return $this->belongsTo(Categorie::class, 'id_categorie', 'id_categorie');
     }
 
-    public function choix(): HasMany {
-        return $this->hasMany(Choix::class, "id_question");
+    public function questionnaire(): BelongsTo
+    {
+        return $this->belongsTo(Questionnaire::class, 'id_questionnaire', 'id_questionnaire');
     }
 
-    public function reponses(): HasMany {
-        return $this->hasMany(Reponse::class, "id_question");
+    public function choix(): HasMany
+    {
+        return $this->hasMany(Choix::class, 'id_question', 'id_question');
     }
 }
