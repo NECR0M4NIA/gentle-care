@@ -1,4 +1,4 @@
-<nav class="mx-4 mt-4 rounded-2xl px-6 py-3 flex items-center justify-center gap-8"
+<nav class="fixed top-0 left-1/2 -translate-x-1/2 z-[9999] w-[calc(100%-2rem)] max-w-7xl mt-4 rounded-2xl px-6 py-3 flex items-center justify-center gap-8"
     style="background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15);">
 
     {{-- Liens --}}
