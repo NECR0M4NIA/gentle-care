@@ -10,6 +10,8 @@ class Resultat extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_resultat';
+
     protected $fillable = ["score_total", "date_resultat", "id_utilisateur"];
 
     public function utilisateur(): BelongsTo
