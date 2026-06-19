@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     */
 
+    /*
     const backgrounds = [
         '/assets/images/sunset-beach-bg-night.png',
         '/assets/images/mountains-dark.avif',
@@ -94,4 +95,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setInterval(changeBackground, 5000);
+    */
 });
