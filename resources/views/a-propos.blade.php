@@ -16,7 +16,7 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="" target="__blank">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/jajoudev" target="__blank">
                         <img width="24" src="/assets/icons/github.svg" alt="">
                         Github
                     </a>
@@ -42,7 +42,7 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/Forcerion">
                         <img width="24" src="/assets/icons/github.svg" alt="">
                         Github
                     </a>
@@ -68,14 +68,9 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="">
-                        <img width="24" src="/assets/icons/github.svg" alt="">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/FonceurOk">
+                        <img width="24" src="/assets/icons/github.svg" alt="FonceurOk">
                         Github
-                    </a>
-
-                    <a class="inline-flex items-center gap-2 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-colors" href="">
-                        <img width="24" src="/assets/icons/youtube.svg" alt="">
-                        YouTube
                     </a>
                 </div>
             </div>
@@ -94,7 +89,7 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/NECR0M4NIA">
                         <img width="24" src="/assets/icons/github.svg" alt="">
                         Github
                     </a>
