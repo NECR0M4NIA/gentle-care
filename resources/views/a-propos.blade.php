@@ -42,7 +42,7 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/Forcerion">
                         <img width="24" src="/assets/icons/github.svg" alt="">
                         Github
                     </a>
