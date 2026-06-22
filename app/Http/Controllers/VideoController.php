@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resultat;
-use App\Services\YoutubeService;
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
@@ -14,16 +14,11 @@ class VideoController extends Controller
             ->latest()
             ->first();
 
-        $youtube = new YoutubeService();
+        $score = $dernierResultat?->score_total ?? 0;
 
-        if (!$dernierResultat) {
-            $videos = $youtube->search('bien-être relaxation meditation', 9);
-        } elseif ($dernierResultat->score_total <= 40) {
-            $videos = $youtube->search('exercice respiration guidée stress', 9);
-        } else {    
-            $videos = $youtube->search('méditation apaisante anxiété soutien', 9);
-        }
-        
+        $videos = Video::where('score_min', '<=', $score)
+            ->where('score_max', '>=', $score)
+            ->get();
 
         return view('videos', compact('videos'));
     }
