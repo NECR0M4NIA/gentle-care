@@ -15,16 +15,11 @@ Route::get('/histoire', function () {
     return view('history');
 })->middleware('guest');
 
-
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-
 
 Route::get('/videos', [VideoController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('videos');
-
-Route::get('/videos/{id}', [VideoController::class, 'show'])
-    ->name('videos.show');
 
 Route::get('/anti-stress', function () {
     return view('anti-stress');
@@ -41,6 +36,10 @@ Route::get('/a-propos', function () {
 Route::get('/avis', function () {
     return view('avis');
 })->middleware(['auth', 'verified'])->name('avis');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->middleware(['auth', 'verified'])->name('contact');
 
 Route::middleware(['auth'])->group(function () {
 Route::get('/questionnaire/{id_questionnaire}/resultat', [QuestionnaireController::class, 'resultat'])->name('questionnaire.resultat');
