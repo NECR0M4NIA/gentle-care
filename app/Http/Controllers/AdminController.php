@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Resultat;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -11,17 +13,19 @@ class AdminController extends Controller
     {
         $users = User::all();
 
-        return view('dashboard', compact('users'));
+        $resultats = Resultat::where('id_utilisateur', Auth::id())
+            ->orderBy('date_resultat')
+            ->get(['date_resultat', 'score_total']);
+
+        $labels = $resultats->pluck('date_resultat');
+        $scores = $resultats->pluck('score_total');
+
+        return view('dashboard', compact('users', 'labels', 'scores'));
     }
 
     public function destroy(User $user)
     {
-        // if (auth()->id() === $user->id) {
-        //     return redirect()->back()->with('error', 'Vous ne pouvez pas supprimer votre propre compte !');
-        // }
-
         $user->delete();
-
         return redirect()->back()->with('success', 'Utilisateur supprimé avec succès.');
     }
 }
