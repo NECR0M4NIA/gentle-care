@@ -63,8 +63,10 @@
                 <h2 class="text-4xl text-white font-bold">FonceurOk</h2>
 
                 <p class="text-white/90 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat quas officia magni ea lorem irure occaecat duis obcaecati
-                    vitae ea nesciunt. Dolores inventore architecto sed aute commodo cillum enim proident. Voluptas dolorem dolorem ex sint magnamquaerat
+                    Salut, je m'appelle FonceurOk. Je suis l'un des développeurs qui ont travaillé sur ce projet, 
+                    et je suis vraiment heureux d'avoir pu y contribuer. 
+                    Pouvoir aider les gens à se sentir mieux me procure beaucoup de satisfaction. 
+                    J'espère que notre site vous a plu.
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
