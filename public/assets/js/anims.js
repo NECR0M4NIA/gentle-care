@@ -1,6 +1,4 @@
-console.log("anims.js chargé");
-
-console.log('isDark:', window.matchMedia("(prefers-color-scheme: dark)").matches);
+// console.log('isDark:', window.matchMedia("(prefers-color-scheme: dark)").matches);
 
 document.addEventListener('DOMContentLoaded', () => {
     const $body = document.querySelector('body');
@@ -29,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, delay);
     });
-
-    console.log("body bg:", getComputedStyle(document.body).backgroundImage);
 
     /*
     const backgrounds = [
