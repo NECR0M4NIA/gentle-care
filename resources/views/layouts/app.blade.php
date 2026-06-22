@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/gentle-care-orange.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/gentle-care-blue.svg" media="(prefers-color-scheme: dark)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -15,8 +17,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="overflow-y-auto pt-[78px] bg-cover bg-center bg-no-repeat bg-fixed"
-      style="background-image: url('/assets/images/forest-night.jpg');">
+<body class="overflow-y-auto pt-[78px] bg-cover bg-center bg-no-repeat bg-fixed bg-[url('/public/assets/images/background-light.png')] dark:bg-[url('/public/assets/images/background.png')]">
     <div class="min-h-screen">
         @include('layouts.navigation')
 
