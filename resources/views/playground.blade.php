@@ -7,7 +7,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Carte 1 (Exemple) -->
-                <div class="reveal bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
+                <div class="reveal bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
                     <!-- Image de l'activité -->
                     <div class="relative h-48 overflow-hidden bg-gray-900">
                         <img src="/assets/images/games/connect-four.png" alt="Aperçu du jeu" class="w-full h-full object-cover">
@@ -18,7 +18,7 @@
                     <!-- Contenu du texte -->
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                            <h2 class="text-2xl font-bold text-white mb-2">Puissance Quatre</h2>
+                            <h2 class="text-2xl font-bold dark:text-white mb-2">Puissance Quatre</h2>
                             <p class="text-gray-400 text-sm mb-4">Le célèbre jeu de stratégie où deux joueurs s'affrontent pour aligner quatre jetons de leur couleur. Soyez plus malin que votre adversaire en bloquant ses coups tout en préparant votre propre victoire !</p>
                         </div>
 
@@ -44,14 +44,14 @@
                 </div>
 
                 <!-- Carte 2 (Exemple) -->
-                <div class="reveal bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
+                <div class="reveal bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
                     <div class="relative h-48 overflow-hidden bg-gray-900">
                         <img src="/assets/images/games/tictactoe.png" alt="Aperçu du jeu" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 bg-[#31C3BD] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Jeu</span>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                            <h2 class="text-2xl font-bold text-white mb-2">Morpion</h2>
+                            <h2 class="text-2xl font-bold dark:text-white mb-2">Morpion</h2>
                             <p class="text-gray-400 text-sm mb-4">Un grand classique indémodable où la rapidité d'esprit est de mise pour aligner trois symboles identiques. Soyez le premier à remplir une ligne, une colonne ou une diagonale avant que la grille ne soit saturée !</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-700 flex items-center justify-between">
@@ -72,14 +72,14 @@
                 </div>
 
                 <!-- Carte 2 (Exemple) -->
-                <div class="reveal bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
+                <div class="reveal bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
                     <div class="relative h-48 overflow-hidden bg-gray-900">
                         <img src="/assets/images/games/dream-book-editor.png" alt="Aperçu du jeu" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 bg-[#31C3BD] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bloc-Notes</span>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                            <h2 class="text-2xl font-bold text-white mb-2">Dream Book Editor</h2>
+                            <h2 class="text-2xl font-bold dark:text-white mb-2">Dream Book Editor</h2>
                             <p class="text-gray-400 text-sm mb-4">Un grand classique indémodable où la rapidité d'esprit est de mise pour aligner trois symboles identiques. Soyez le premier à remplir une ligne, une colonne ou une diagonale avant que la grille ne soit saturée !</p>
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-700 flex items-center justify-between">
