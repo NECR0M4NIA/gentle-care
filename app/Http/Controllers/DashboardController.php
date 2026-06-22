@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Reponse;
-use Illuminate\Http\Request;
+use App\Models\Resultat;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+
         $users = User::all();
 
-        $user = Auth::user();
         $hasCompletedQuestionnaire = Reponse::where('id_utilisateur', $user->id_utilisateur)->exists();
 
-        return view('dashboard', compact('users', 'hasCompletedQuestionnaire'));
+        $resultats = Resultat::where('id_utilisateur', $user->id_utilisateur)
+            ->orderBy('date_resultat')
+            ->get(['date_resultat', 'score_total']);
+
+        $labels = $resultats->pluck('date_resultat');
+        $scores = $resultats->pluck('score_total');
+
+        return view('dashboard', compact('users', 'hasCompletedQuestionnaire', 'labels', 'scores'));
     }
 }

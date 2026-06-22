@@ -1,4 +1,74 @@
 <x-app-layout>
+@if(auth()->user() && auth()->user()->role === 'user')
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
+        <h2 class="text-white text-2xl font-bold mb-4">Mon évolution</h2>
+        <div class="bg-white bg-opacity-10 rounded-xl p-6">
+            <canvas id="scoreChart"></canvas>
+        </div>
+    </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const scores = @json($scores);
+    const dernierScore = scores.length > 0 ? scores[scores.length - 1] : 0;
+
+    const vert  = Math.min(dernierScore, 20);
+    const jaune = Math.max(0, Math.min(dernierScore - 20, 20));
+    const rouge = Math.max(0, dernierScore - 40);
+    const reste = 60 - dernierScore;
+
+    new Chart(document.getElementById('scoreChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Bien 🟢', 'Coup de mou 🟡', 'Mal-être 🔴', 'Restant'],
+            datasets: [{
+                data: [vert, jaune, rouge, reste],
+                backgroundColor: [
+                    '#4ade80',
+                    '#facc15',
+                    '#f87171',
+                    'rgba(255,255,255,0.1)',
+                ],
+                borderWidth: 0,
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: 'white', padding: 16 }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            if (context.label === 'Restant') return '';
+                            return context.label + ' : ' + context.parsed;
+                        }
+                    }
+                }
+            }
+        },
+        plugins: [{
+            id: 'centerText',
+            afterDraw(chart) {
+                const { ctx, chartArea: { width, height, left, top } } = chart;
+                ctx.save();
+                ctx.font = 'bold 28px sans-serif';
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(dernierScore + ' / 60', left + width / 2, top + height / 2 - 10);
+                ctx.font = '14px sans-serif';
+                ctx.fillStyle = 'rgba(255,255,255,0.6)';
+                ctx.fillText('Mon score', left + width / 2, top + height / 2 + 20);
+                ctx.restore();
+            }
+        }]
+    });
+</script>
+@endif
 
     @if(auth()->user() && auth()->user()->role === 'admin')
     <div class="py-12">
@@ -12,15 +82,15 @@
                 <div class="relative flex-1 min-w-[200px]">
                     <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.35-4.35" />
                         </svg>
                     </span>
                     <input
                         id="searchInput"
                         type="text"
                         placeholder="Rechercher par ID, nom, email..."
-                        class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                    >
+                        class="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
                 </div>
 
                 {{-- Filtre role --}}
@@ -42,7 +112,7 @@
                 <button id="sortDir" title="Inverser l'ordre"
                     class="flex items-center gap-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition select-none">
                     <svg id="sortDirIcon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4h13M3 8h9M3 12h5m10 4V6m0 0 3 3m-3-3-3 3"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 4h13M3 8h9M3 12h5m10 4V6m0 0 3 3m-3-3-3 3" />
                     </svg>
                     <span id="sortDirLabel">Croissant</span>
                 </button>
@@ -73,8 +143,7 @@
                             data-name="{{ strtolower($user->name) }}"
                             data-email="{{ strtolower($user->email) }}"
                             data-role="{{ $user->role }}"
-                            data-date="{{ $user->created_at->timestamp }}"
-                        >
+                            data-date="{{ $user->created_at->timestamp }}">
                             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $user->id_utilisateur }}</td>
                             <td class="px-6 py-4">{{ $user->name }}</td>
                             <td class="px-6 py-4">{{ $user->email }}</td>
@@ -111,7 +180,7 @@
                 {{-- Etat vide --}}
                 <div id="emptyState" class="hidden py-16 text-center text-gray-400 dark:text-gray-500">
                     <svg class="w-10 h-10 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75 21 21m-6.75-6.75A7.5 7.5 0 1 0 3 10.5a7.5 7.5 0 0 0 12 5.25Z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75 21 21m-6.75-6.75A7.5 7.5 0 1 0 3 10.5a7.5 7.5 0 0 0 12 5.25Z" />
                     </svg>
                     <p class="text-sm">Aucun utilisateur ne correspond a votre recherche.</p>
                 </div>
@@ -128,95 +197,95 @@
     @livewireScripts
 
     <script>
-    (function () {
-        var searchInput  = document.getElementById('searchInput');
-        var filterRole   = document.getElementById('filterRole');
-        var sortColEl    = document.getElementById('sortCol');
-        var sortDirBtn   = document.getElementById('sortDir');
-        var sortDirLabel = document.getElementById('sortDirLabel');
-        var sortDirIcon  = document.getElementById('sortDirIcon');
-        var tbody        = document.getElementById('usersBody');
-        var emptyState   = document.getElementById('emptyState');
-        var resultCount  = document.getElementById('resultCount');
+        (function() {
+            var searchInput = document.getElementById('searchInput');
+            var filterRole = document.getElementById('filterRole');
+            var sortColEl = document.getElementById('sortCol');
+            var sortDirBtn = document.getElementById('sortDir');
+            var sortDirLabel = document.getElementById('sortDirLabel');
+            var sortDirIcon = document.getElementById('sortDirIcon');
+            var tbody = document.getElementById('usersBody');
+            var emptyState = document.getElementById('emptyState');
+            var resultCount = document.getElementById('resultCount');
 
-        var sortAsc = true;
+            var sortAsc = true;
 
-        /* Toggle direction */
-        sortDirBtn.addEventListener('click', function () {
-            sortAsc = !sortAsc;
-            sortDirLabel.textContent = sortAsc ? 'Croissant' : 'Decroissant';
-            sortDirIcon.style.transform = sortAsc ? '' : 'scaleY(-1)';
-            apply();
-        });
-
-        /* Listeners */
-        searchInput.addEventListener('input', apply);
-        filterRole.addEventListener('change', apply);
-        sortColEl.addEventListener('change', apply);
-
-        function apply() {
-            var query = searchInput.value.toLowerCase().trim();
-            var role  = filterRole.value;
-            var col   = sortColEl.value;
-
-            var rows = Array.from(tbody.querySelectorAll('tr.user-row'));
-
-            /* 1. Filtrer */
-            var visible = rows.filter(function (row) {
-                var matchSearch = !query
-                    || row.dataset.id.includes(query)
-                    || row.dataset.name.includes(query)
-                    || row.dataset.email.includes(query);
-                var matchRole = !role || row.dataset.role === role;
-                return matchSearch && matchRole;
+            /* Toggle direction */
+            sortDirBtn.addEventListener('click', function() {
+                sortAsc = !sortAsc;
+                sortDirLabel.textContent = sortAsc ? 'Croissant' : 'Decroissant';
+                sortDirIcon.style.transform = sortAsc ? '' : 'scaleY(-1)';
+                apply();
             });
 
-            /* 2. Trier */
-            visible.sort(function (a, b) {
-                var va, vb;
-                if (col === 'id') {
-                    va = parseInt(a.dataset.id, 10);
-                    vb = parseInt(b.dataset.id, 10);
-                } else if (col === 'name') {
-                    va = a.dataset.name;
-                    vb = b.dataset.name;
-                } else if (col === 'email') {
-                    va = a.dataset.email;
-                    vb = b.dataset.email;
+            /* Listeners */
+            searchInput.addEventListener('input', apply);
+            filterRole.addEventListener('change', apply);
+            sortColEl.addEventListener('change', apply);
+
+            function apply() {
+                var query = searchInput.value.toLowerCase().trim();
+                var role = filterRole.value;
+                var col = sortColEl.value;
+
+                var rows = Array.from(tbody.querySelectorAll('tr.user-row'));
+
+                /* 1. Filtrer */
+                var visible = rows.filter(function(row) {
+                    var matchSearch = !query ||
+                        row.dataset.id.includes(query) ||
+                        row.dataset.name.includes(query) ||
+                        row.dataset.email.includes(query);
+                    var matchRole = !role || row.dataset.role === role;
+                    return matchSearch && matchRole;
+                });
+
+                /* 2. Trier */
+                visible.sort(function(a, b) {
+                    var va, vb;
+                    if (col === 'id') {
+                        va = parseInt(a.dataset.id, 10);
+                        vb = parseInt(b.dataset.id, 10);
+                    } else if (col === 'name') {
+                        va = a.dataset.name;
+                        vb = b.dataset.name;
+                    } else if (col === 'email') {
+                        va = a.dataset.email;
+                        vb = b.dataset.email;
+                    } else {
+                        va = parseInt(a.dataset.date, 10);
+                        vb = parseInt(b.dataset.date, 10);
+                    }
+                    if (va < vb) return sortAsc ? -1 : 1;
+                    if (va > vb) return sortAsc ? 1 : -1;
+                    return 0;
+                });
+
+                /* 3. Masquer toutes les lignes */
+                rows.forEach(function(row) {
+                    row.style.display = 'none';
+                });
+
+                /* 4. Reinserer les lignes visibles dans le bon ordre */
+                visible.forEach(function(row) {
+                    row.style.display = '';
+                    tbody.appendChild(row);
+                });
+
+                /* 5. Etat vide + compteur */
+                if (visible.length === 0) {
+                    emptyState.classList.remove('hidden');
                 } else {
-                    va = parseInt(a.dataset.date, 10);
-                    vb = parseInt(b.dataset.date, 10);
+                    emptyState.classList.add('hidden');
                 }
-                if (va < vb) return sortAsc ? -1 : 1;
-                if (va > vb) return sortAsc ?  1 : -1;
-                return 0;
-            });
 
-            /* 3. Masquer toutes les lignes */
-            rows.forEach(function (row) {
-                row.style.display = 'none';
-            });
-
-            /* 4. Reinserer les lignes visibles dans le bon ordre */
-            visible.forEach(function (row) {
-                row.style.display = '';
-                tbody.appendChild(row);
-            });
-
-            /* 5. Etat vide + compteur */
-            if (visible.length === 0) {
-                emptyState.classList.remove('hidden');
-            } else {
-                emptyState.classList.add('hidden');
+                var total = rows.length;
+                resultCount.textContent = visible.length + ' / ' + total + ' utilisateur' + (total > 1 ? 's' : '');
             }
 
-            var total = rows.length;
-            resultCount.textContent = visible.length + ' / ' + total + ' utilisateur' + (total > 1 ? 's' : '');
-        }
-
-        /* Init du compteur */
-        apply();
-    })();
+            /* Init du compteur */
+            apply();
+        })();
     </script>
 
 </x-app-layout>
