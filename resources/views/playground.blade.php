@@ -47,7 +47,7 @@
                 <div class="reveal bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
                     <div class="relative h-48 overflow-hidden bg-gray-900">
                         <img src="/assets/images/games/tictactoe.png" alt="Aperçu du jeu" class="w-full h-full object-cover">
-                        <span class="absolute top-4 right-4 bg-[#31C3BD] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Quiz</span>
+                        <span class="absolute top-4 right-4 bg-[#31C3BD] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Jeu</span>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
@@ -74,8 +74,8 @@
                 <!-- Carte 2 (Exemple) -->
                 <div class="reveal bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col border border-gray-700">
                     <div class="relative h-48 overflow-hidden bg-gray-900">
-                        <img src="/assets/images/games/tictactoe.png" alt="Aperçu du jeu" class="w-full h-full object-cover">
-                        <span class="absolute top-4 right-4 bg-[#31C3BD] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Quiz</span>
+                        <img src="/assets/images/games/dream-book-editor.png" alt="Aperçu du jeu" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-[#31C3BD] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bloc-Notes</span>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
@@ -92,8 +92,8 @@
                                     <p class="text-sm font-semibold text-gray-300">NECRO MANIA</p>
                                 </div>
                             </div>
-                            <a href="https://necr0m4nia.github.io/tic-tac-toe/" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-[#31C3BD] hover:bg-cyan-800 rounded-xl transition-colors">
-                                Jouer
+                            <a href="https://necr0m4nia.github.io/dream-book-editor/" target="_blank" class="inline-flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-[#145AD3] hover:bg-cyan-800 rounded-xl transition-colors">
+                                Visiter
                             </a>
                         </div>
                     </div>
