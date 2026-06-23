@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             ReponseSeeder::class,
             ResultatSeeder::class,
             VideoSeeder::class,
+            CitationSeeder::class
         ]);
     }
 }
