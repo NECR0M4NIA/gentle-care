@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Reponse;
 use App\Models\Resultat;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,16 +11,19 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
+        $user  = Auth::user();
         $users = User::all();
 
-        $resultats = Resultat::where('id_utilisateur', Auth::id())
+        $hasCompletedQuestionnaire = Reponse::where('id_utilisateur', $user->id_utilisateur)->exists();
+
+        $resultats = Resultat::where('id_utilisateur', $user->id_utilisateur)
             ->orderBy('date_resultat')
             ->get(['date_resultat', 'score_total']);
 
         $labels = $resultats->pluck('date_resultat');
         $scores = $resultats->pluck('score_total');
 
-        return view('dashboard', compact('users', 'labels', 'scores'));
+        return view('dashboard', compact('users', 'hasCompletedQuestionnaire', 'labels', 'scores'));
     }
 
     public function destroy(User $user)
