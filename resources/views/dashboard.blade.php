@@ -1,74 +1,205 @@
+<?php
+
+use App\Models\Citation;
+$citations = Citation::all(['author', 'content']);
+
+?>
+
 <x-app-layout>
-@if(auth()->user() && auth()->user()->role === 'user')
+    @if(auth()->user() && auth()->user()->role === 'user')
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
-        <h2 class="text-white text-2xl font-bold mb-4">Mon évolution</h2>
-        <div class="bg-white bg-opacity-10 rounded-xl p-6">
-            <canvas id="scoreChart"></canvas>
+        <h2 class="text-white text-2xl font-bold mb-6">Mon évolution</h2>
+
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+
+            {{-- Légende --}}
+            <div class="flex items-center gap-6 mb-6 flex-wrap">
+                <span class="flex items-center gap-2 text-sm text-white/70">
+                    <span class="w-2 h-2 rounded-full bg-green-400 inline-block"></span>Bien
+                </span>
+                <span class="flex items-center gap-2 text-sm text-white/70">
+                    <span class="w-2 h-2 rounded-full bg-yellow-400 inline-block"></span>Coup de mou
+                </span>
+                <span class="flex items-center gap-2 text-sm text-white/70">
+                    <span class="w-2 h-2 rounded-full bg-red-400 inline-block"></span>Mal-être
+                </span>
+            </div>
+
+            {{-- Graphique + barres --}}
+            <div class="flex flex-col md:flex-row items-center gap-8">
+
+                {{-- Donut --}}
+                <div class="relative w-52 h-52 flex-shrink-0">
+                    <canvas id="scoreChart"></canvas>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                        <span class="text-3xl font-semibold text-white" id="centerScore"></span>
+                        <span class="text-xs text-white/50 mt-1">Mon score</span>
+                    </div>
+                </div>
+
+                {{-- Barres de progression --}}
+                <div class="flex-1 w-full flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm text-white/60 w-28 shrink-0">Bien (0–20)</span>
+                        <div class="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="barVert" class="h-full bg-green-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+                        </div>
+                        <span id="valVert" class="text-sm font-medium text-white w-6 text-right"></span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm text-white/60 w-28 shrink-0">Coup de mou</span>
+                        <div class="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="barJaune" class="h-full bg-yellow-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+                        </div>
+                        <span id="valJaune" class="text-sm font-medium text-white w-6 text-right"></span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm text-white/60 w-28 shrink-0">Mal-être</span>
+                        <div class="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div id="barRouge" class="h-full bg-red-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+                        </div>
+                        <span id="valRouge" class="text-sm font-medium text-white w-6 text-right"></span>
+                    </div>
+
+                    <div class="border-t border-white/10 pt-3 flex justify-between">
+                        <span class="text-xs text-white/40">Restant</span>
+                        <span id="valReste" class="text-xs text-white/40"></span>
+                    </div>
+                </div>
+            </div>
+            {{-- Citation aléatoire --}}
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mt-4">
+                <div id="citation-container" class="flex flex-col items-center text-center min-h-[80px] justify-center transition-opacity duration-500">
+                    <p id="citation-contenu" class="text-white/80 italic text-base leading-relaxed"></p>
+                    <span id="citation-auteur" class="text-white/40 text-sm mt-3"></span>
+                </div>
+            </div>
         </div>
     </div>
 
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const scores = @json($scores);
-    const dernierScore = scores.length > 0 ? scores[scores.length - 1] : 0;
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const scores = @json($scores);
+        const dernierScore = scores.length > 0 ? scores[scores.length - 1] : 0;
 
-    const vert  = Math.min(dernierScore, 20);
-    const jaune = Math.max(0, Math.min(dernierScore - 20, 20));
-    const rouge = Math.max(0, dernierScore - 40);
-    const reste = 60 - dernierScore;
+        const vert = Math.min(dernierScore, 20);
+        const jaune = Math.max(0, Math.min(dernierScore - 20, 20));
+        const rouge = Math.max(0, dernierScore - 40);
+        const reste = 60 - dernierScore;
 
-    new Chart(document.getElementById('scoreChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Bien 🟢', 'Coup de mou 🟡', 'Mal-être 🔴', 'Restant'],
-            datasets: [{
-                data: [vert, jaune, rouge, reste],
-                backgroundColor: [
-                    '#4ade80',
-                    '#facc15',
-                    '#f87171',
-                    'rgba(255,255,255,0.1)',
-                ],
-                borderWidth: 0,
-            }]
-        },
-        options: {
-            responsive: true,
-            cutout: '70%',
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: { color: 'white', padding: 16 }
+        document.getElementById('centerScore').textContent = dernierScore + ' / 60';
+        document.getElementById('valVert').textContent = vert;
+        document.getElementById('valJaune').textContent = jaune;
+        document.getElementById('valRouge').textContent = rouge;
+        document.getElementById('valReste').textContent = reste + ' pts';
+
+        setTimeout(() => {
+            document.getElementById('barVert').style.width = (vert / 20 * 100) + '%';
+            document.getElementById('barJaune').style.width = (jaune / 20 * 100) + '%';
+            document.getElementById('barRouge').style.width = (rouge / 20 * 100) + '%';
+        }, 100);
+
+        new Chart(document.getElementById('scoreChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Bien', 'Coup de mou', 'Mal-être', 'Restant'],
+                datasets: [{
+                    data: [vert, jaune, rouge, reste],
+                    backgroundColor: [
+                        '#4ade80',
+                        '#facc15',
+                        '#f87171',
+                        'rgba(255,255,255,0.08)',
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 6,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '72%',
+                animation: {
+                    animateRotate: true,
+                    duration: 900,
+                    easing: 'easeInOutQuart',
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            if (context.label === 'Restant') return '';
-                            return context.label + ' : ' + context.parsed;
-                        }
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                if (ctx.label === 'Restant') return '';
+                                return ctx.label + ' : ' + ctx.parsed + ' pts';
+                            }
+                        },
+                        backgroundColor: 'rgba(0,0,0,0.7)',
+                        titleColor: '#fff',
+                        bodyColor: 'rgba(255,255,255,0.7)',
+                        borderColor: 'rgba(255,255,255,0.15)',
+                        borderWidth: 1,
+                        padding: 10,
+                        cornerRadius: 8,
                     }
                 }
+            },
+            plugins: [{
+                id: 'centerText',
+                afterDraw(chart) {
+                    const {
+                        ctx,
+                        chartArea: {
+                            width,
+                            height,
+                            left,
+                            top
+                        }
+                    } = chart;
+                    ctx.save();
+                    ctx.restore();
+                }
+            }]
+        });
+    </script>
+    <script>
+        const citations = @json($citations);
+        let currentIndex = null;
+
+        function getRandomIndex() {
+            if (citations.length <= 1) return 0;
+            let next;
+            do {
+                next = Math.floor(Math.random() * citations.length);
             }
-        },
-        plugins: [{
-            id: 'centerText',
-            afterDraw(chart) {
-                const { ctx, chartArea: { width, height, left, top } } = chart;
-                ctx.save();
-                ctx.font = 'bold 28px sans-serif';
-                ctx.fillStyle = 'white';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(dernierScore + ' / 60', left + width / 2, top + height / 2 - 10);
-                ctx.font = '14px sans-serif';
-                ctx.fillStyle = 'rgba(255,255,255,0.6)';
-                ctx.fillText('Mon score', left + width / 2, top + height / 2 + 20);
-                ctx.restore();
-            }
-        }]
-    });
-</script>
-@endif
+            while (next === currentIndex);
+            return next;
+        }
+
+        function afficherCitation() {
+            const container = document.getElementById('citation-container');
+
+            // Fade out
+            container.style.opacity = '0';
+
+            setTimeout(() => {
+                currentIndex = getRandomIndex();
+                const c = citations[currentIndex];
+                document.getElementById('citation-contenu').textContent = '« ' + c.content + ' »';
+document.getElementById('citation-auteur').textContent  = '— ' + c.author;
+
+                // Fade in
+                container.style.opacity = '1';
+            }, 500);
+        }
+
+        if (citations.length > 0) {
+            afficherCitation();
+            setInterval(afficherCitation, 30000);
+        }
+    </script>
+    @endif
 
     @if(auth()->user() && auth()->user()->role === 'admin')
     <div class="py-12">
@@ -193,8 +324,6 @@
     @if(auth()->user() && auth()->user()->role === 'user')
     <!--  -->
     @endif
-
-    @livewireScripts
 
     <script>
         (function() {

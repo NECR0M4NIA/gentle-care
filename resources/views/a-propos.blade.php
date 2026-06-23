@@ -87,8 +87,9 @@
                 <h2 class="text-4xl text-white font-bold">NECRO MANIA</h2>
 
                 <p class="text-white/90 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat quas officia magni ea lorem irure occaecat duis obcaecati
-                    vitae ea nesciunt. Dolores inventore architecto sed aute commodo cillum enim proident. Voluptas dolorem dolorem ex sint magnamquaerat
+                    Bonjour ! Je suis NECRO MANIA, une des personnes ayant participé à la conception de ce site internet. Qu'est-ce que j'ai adoré faire
+                    sur ce site ? Il est important de noter que j'aime explorer tous les aspects et je m'efforce d'assurer qu'une application soit fluide,
+                    dynamique et plaisante pour tous les usagers.
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
@@ -97,7 +98,7 @@
                         Github
                     </a>
 
-                    <a class="inline-flex items-center gap-2 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-colors" href="">
+                    <a class="inline-flex items-center gap-2 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-colors" href="https://www.youtube.com/@NECROMANIA">
                         <img width="24" src="/assets/icons/youtube.svg" alt="">
                         YouTube
                     </a>

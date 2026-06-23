@@ -1,3 +1,5 @@
+// console.log('isDark:', window.matchMedia("(prefers-color-scheme: dark)").matches);
+
 document.addEventListener('DOMContentLoaded', () => {
     const $body = document.querySelector('body');
     const $elements = document.querySelectorAll('.reveal');
