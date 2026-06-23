@@ -42,9 +42,9 @@ Route::get('/contact', function () {
 })->middleware(['auth', 'verified'])->name('contact');
 
 Route::middleware(['auth'])->group(function () {
-Route::get('/questionnaire/{id_questionnaire}/resultat', [QuestionnaireController::class, 'resultat'])->name('questionnaire.resultat');
-Route::get('/questionnaire/{id_questionnaire}/{ordre?}', [QuestionnaireController::class, 'show'])->name('questionnaire.show');
-Route::post('/questionnaire/{id_questionnaire}/store', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
+    Route::get('/questionnaire/{id_questionnaire}/resultat', [QuestionnaireController::class, 'resultat'])->name('questionnaire.resultat');
+    Route::get('/questionnaire/{id_questionnaire}/{ordre?}', [QuestionnaireController::class, 'show'])->name('questionnaire.show');
+    Route::post('/questionnaire/{id_questionnaire}/store', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
 });
 
 
