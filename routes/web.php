@@ -15,6 +15,10 @@ Route::get('/histoire', function () {
     return view('history');
 })->middleware('guest');
 
+Route::get('/history', function () {
+    return view('history2');
+})->middleware('guest');
+
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/videos', [VideoController::class, 'index'])

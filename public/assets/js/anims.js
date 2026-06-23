@@ -1,5 +1,3 @@
-// console.log('isDark:', window.matchMedia("(prefers-color-scheme: dark)").matches);
-
 document.addEventListener('DOMContentLoaded', () => {
     const $body = document.querySelector('body');
     const $elements = document.querySelectorAll('.reveal');
@@ -29,24 +27,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /*
-    const backgrounds = [
-        '/assets/images/sunset-beach-bg.png',
-        '/assets/images/forest.png',
-        '/assets/images/forest.jpg',
-        '/assets/images/lac.jpg'
-    ];
-    */
+    if (window.location.pathname === "/") {
+        let backgrounds = [];
 
-    /*
-    const backgrounds = [
-        '/assets/images/sunset-beach-bg-night.png',
-        '/assets/images/mountains-dark.avif',
-        '/assets/images/forest-night.jpg',
-        '/assets/images/lac-night.jpg'
-    ];
+        const backgroundsLight = [
+            '/assets/images/sunset-beach-bg.png',
+            '/assets/images/forest.png',
+            '/assets/images/forest.jpg',
+            '/assets/images/lac.jpg'
+        ];
 
-    const style = document.createElement('style');
-    style.innerHTML = `
+        const backgroundsDark = [
+            '/assets/images/sunset-beach-bg-night.png',
+            '/assets/images/mountains-dark.avif',
+            '/assets/images/forest-night.jpg',
+            '/assets/images/lac-night.jpg'
+        ];
+
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches === true)
+            backgrounds = backgroundsDark;
+        else
+            backgrounds = backgroundsLight
+
+        const style = document.createElement('style');
+        style.innerHTML = `
         body {
             position: relative;
             z-index: 1;
@@ -72,30 +76,31 @@ document.addEventListener('DOMContentLoaded', () => {
         body.fade-active::before { opacity: 0; }
         body.fade-active::after { opacity: 1; }
     `;
-    document.head.appendChild(style);
+        document.head.appendChild(style);
 
-    let currentIndex = 0;
-    $body.style.setProperty('--bg-current', `url('${backgrounds[currentIndex]}')`);
+        let currentIndex = 0;
+        $body.style.setProperty('--bg-current', `url('${backgrounds[currentIndex]}')`);
 
-    function changeBackground() {
-        let nextIndex;
-        do {
-            nextIndex = Math.floor(Math.random() * backgrounds.length);
-        } while (nextIndex === currentIndex);
+        function changeBackground() {
+            let nextIndex;
+            do {
+                nextIndex = Math.floor(Math.random() * backgrounds.length);
+            } while (nextIndex === currentIndex);
 
-        const nextImage = backgrounds[nextIndex];
-        
-        $body.style.setProperty('--bg-next', `url('${nextImage}')`);
-        
-        $body.classList.add('fade-active');
+            const nextImage = backgrounds[nextIndex];
 
-        setTimeout(() => {
-            $body.style.setProperty('--bg-current', `url('${nextImage}')`);
-            $body.classList.remove('fade-active');
-            currentIndex = nextIndex;
-        }, 1500);
+            $body.style.setProperty('--bg-next', `url('${nextImage}')`);
+
+            $body.classList.add('fade-active');
+
+            setTimeout(() => {
+                $body.style.setProperty('--bg-current', `url('${nextImage}')`);
+                $body.classList.remove('fade-active');
+                currentIndex = nextIndex;
+            }, 1500);
+        }
+
+        setInterval(changeBackground, 5000);
     }
-
-    setInterval(changeBackground, 5000);
-    */
+        */
 });

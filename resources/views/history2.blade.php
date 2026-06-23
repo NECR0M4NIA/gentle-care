@@ -17,77 +17,182 @@
         </style>
     @endif
 </head>
-<!-- <div class="flex center space-around">
-    <h1 class="mb-1 font-medium">Gentle Care</h1>
-    <p>Titre</p>
-    <div class="flex">
-        <p>Register</p>
-        <p>Login</p>
-    </div>
-</div>
-<p><a href="/history">Première fois sur le site</a></p> -->
+<body class="relative min-h-screen w-screen flex flex-col px-6 lg:px-24 lg:py-6 bg-cover bg-center overflow-x-hidden">
 
-<body class="opacity-0 bg-cover bg-center bg-no-repeat flex flex-col min-h-screen w-screen overflow-hidden px-6 lg:px-24 lg:py-6">
+    <div class="fixed inset-0 -z-10">
+        <img src="/assets/images/mountain.jpg"
+             class="w-full h-full object-cover dark:hidden">
 
- <div class="fixed inset-0 -z-10">
-        <img src="/assets/images/sunset-beach-bg.png"
-             class="w-full h-full object-cover dark:hidden bg-[image:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45))]">
-
-        <img src="/assets/images/sunset-beach-bg-night.jpg"
+        <img src="/assets/images/mountains-dark.avif"
              class="hidden dark:block w-full h-full object-cover">
     </div>
 
-<div class="fixed inset-0 bg-black/40 dark:bg-black/60 -z-10"></div>
+   <div class="fixed inset-0 bg-[image:linear-gradient(to_bottom,rgba(251,146,60,0.2),rgba(124,45,18,0.2))] dark:bg-[image:linear-gradient(to_bottom,rgba(96,165,250,0.2),rgba(30,58,138,0.2))] -z-10"></div>
 
 <div class="reveal w-full sticky top-0 z-50">
     @include('layouts.navbar')
 </div>
 
-<div class="flex flex-col md:flex-row items-center gap-8 flex-grow justify-center">
-
-    <div class="flex flex-col w-full md:w-1/2 items-start gap-6 lg:gap-10">
-
-        <h1 class="reveal text-[4rem] lg:text-[7rem] leading-none uppercase font-black tracking-wide
-        bg-gradient-to-b from-[#F2A154] to-white bg-clip-text text-transparent dark:hidden">
-            Gentle Care
+<section class="reveal">
+        <h1 class="text-6xl py-12 text-white text-center font-bold">
+            Qui sommes nous ?
         </h1>
 
-        <h1 class="reveal hidden dark:block text-[4rem] lg:text-[7rem] leading-none uppercase font-black tracking-wide
-        bg-gradient-to-b from-[#4B83F5] to-white bg-clip-text text-transparent">
-            Gentle Care
+        <div class="reveal flex flex-col md:flex-row items-center justify-between bg-white/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+            <div class="relative">
+                <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/gentle-care-orange.png" alt="Gentle Care" class="object-cover rounded-[28px]">
+                </div>
+                <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/gentle-care-blue.png" alt="Gentle Care" class="object-cover rounded-[28px]">
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <div class="w-full flex flex-col py-4 gap-4">
+                    <p class="text-white/90 text-2xl leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                        Nous sommes un jeune groupe d'étudiants au sein de l'Eden School Paris, actuellement en deuxième année d'études. Notre groupe est composé d'étudiants de tous âges, compris entre 15 et 19 ans, ce qui nous permet de bénéficier de points de vue variés et d'une grande richesse dans nos échanges.
+                    </p>
+                </div>
+                <div class="w-full flex flex-col py-4 gap-4">
+                    <p class="text-white/90 text-2xl leading-relaxed text-right drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                        Passionnés par les nouvelles technologies, la programmation et l'innovation numérique, nous développons nos compétences à travers différents projets et relevons de nouveaux défis ensemble.
+                    </p>
+                </div>
+           </div>
+        </div>
+
+        <h1 class="text-6xl py-12 text-white text-center font-bold">
+            Pourquoi nous avons créé ce site ?
         </h1>
 
-        <p class="reveal text-white leading-relaxed text-base lg:text-xl max-w-xl">
-            Gentle Care est une plateforme web bienveillante conçue pour accompagner au quotidien les personnes
-            qui traversent des moments difficiles ou ne se sentent pas bien.
+        <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-orange-400/50 dark:bg-blue-800/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+            <div class="relative">
+                <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/sad-person.png" alt="Sad Person" class="object-cover rounded-[28px]">
+                </div>
+                <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/sad-person-blue.jpg" alt="Sad Person" class="object-cover rounded-[28px]">
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
+                <p class="text-white/90 text-3xl md:text-2xl leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                   Nous avons créé ce site parce que, dans notre génération, de plus en plus de personnes, notamment les jeunes, souffrent de dépression et de mal-être. C'est pourquoi il est important pour nous de favoriser le bien-être de chacun.
+                   Voilà la raison de l'existence de ce site : selon nous, tout le monde mérite d'obtenir du bonheur et surtout du bien-être.
+                </p>
+            </div>
+        </div>
+</section>
+<section>
+    <h1 class="text-6xl py-12 text-white text-center font-bold">
+        À quoi sert le site ?
+    </h1>
+
+   <div class="reveal grid grid-cols-1 bg-orange-600/50 dark:bg-blue-900/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8 w-full max-w-5xl mx-auto">
+    <div class="mx-auto">
+        <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)] w-fit">
+            <img src="/assets/images/help-others.jpg" alt="Help others" class="object-cover rounded-[28px]">
+        </div>
+        <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)] w-fit">
+            <img src="/assets/images/help-others-blue.png" alt="Help others" class="object-cover rounded-[28px]">
+        </div>
+    </div>
+
+     <div>
+        <p class="text-white/90 text-2xl leading-relaxed text-center drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+            Le site sert à toutes les personnes qui souffrent de mal-être et qui sont en quête du bien-être. Dans celui-ci, vous pourrez avoir votre propre espace avec des jeux ludiques, des citations inédites, des vidéos et des exercices de respiration.
         </p>
+     </div>
+    </div>
+</section>
+<section>
+     <h1 class="text-6xl py-12 text-white text-center font-bold">
+            Comment fonctionne le site ?
+        </h1>
 
-        <a href="/histoire"
-           class="reveal inline-block px-6 py-3 rounded-lg font-semibold text-white shadow-md transition
-           bg-[#FF8D28] hover:bg-[#e08f3e]
-           dark:bg-[#4B83F5] dark:hover:bg-[#566495]">
-            Première fois sur le site ?
+        <div class="space-y-10">
+        <div class="reveal flex flex-col md:flex-row items-center justify-between bg-white/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+            <div class="relative">
+                <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/mental-health.png" alt="Mental Health" class="object-cover rounded-[28px]">
+                </div>
+                <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/mental-health-blue.png" alt="Mental Health" class="object-cover rounded-[28px]">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
+                <div class="w-full flex flex-col py-4 gap-4">
+                    <p class="text-white/90 text-2xl leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                       Dans un premier temps une fois que vous aurez fini de lire cette page, vous allez être redirigé sur une autre page permettant de faire votre premier pas de guérison et créer votre propre espace chez nous en renseignant vos informations personnelles qu'on a garde précieusement dans notre base de donnée 100% sécurisé
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-orange-400/50 dark:bg-blue-800/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+            <div class="relative">
+                <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/hug.png" alt="Hug" class="object-cover rounded-[28px]">
+                </div>
+                <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/hug-night.png" alt="Hug" class="object-cover rounded-[28px]">
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
+                <p class="text-white/90 text-3xl md:text-2xl leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                  Ensuite dans un second temps une fois que vous aurez fini de créer votre propre espace chez nous, vous devrez remplir un questionnaire qui contient 20 questions afin d'en apprendre un peu plus sur vous, en choisissant des réponses en fonction de votre situation afin de vous aider un maximum créant un algorithme unique pour vous. 
+                </p>
+            </div>
+        </div>
+
+        <div class="reveal flex flex-col md:flex-row items-center justify-between bg-orange-600/50 dark:bg-blue-900/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
+            <div class="relative">
+                <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-600/50 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/welcome.png" alt="Welcome" class="object-cover rounded-[28px]">
+                </div>
+                <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-600/50 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/welcome-night.png" alt="Welcome" class="object-cover rounded-[28px]">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
+                <div class="w-full flex flex-col py-4 gap-4">
+                    <p class="text-white/90 text-2xl leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                        Et pour finir une fois que vous aurez rempli le questionnaire, vous avez accès à votre propre espace de détente uniquement pour vous, incluant des vidéos, des exercices de respiration et méditation, des jeux ludiques… En résumé, tout en votre disposition pour bénéficier votre bien-être en prenant votre chemin de guérison à l'aide de notre site web
+                    </p>
+                </div>
+           </div>
+        </div>
+        </div>
+</section>
+<section>
+    <div class="min-h-[60vh] flex items-center justify-center">
+        <div class="reveal grid grid-cols-1 place-items-center border-4 border-white rounded-2xl px-6 py-12 md:px-12 md:py-14 gap-10 w-full max-w-5xl shadow-2xl">
+            <h1 class="text-4xl md:text-6xl text-white text-center font-bold">
+                Êtes-vous prêts à s'enregistrer ?
+            </h1>
+             <a href="/register"
+           class="border-4 border-white text-white
+           hover:bg-gray-200/20 
+           rounded-xl py-3 px-10 text-2xl font-bold transition-colors duration-300 inline-block text-center">
+            S'enregistrer
         </a>
-
+        </div>
     </div>
+</section>
 
-    <div class="w-full md:w-1/2 flex justify-center">
-        <img src="/assets/images/tablet-item.png"
-             class="reveal dark:hidden max-w-full max-h-[50vh] md:max-h-[70vh] object-contain rounded-xl shadow-lg">
+<div class="mt-8 flex justify-between">
+    <button id="prevBtn" type="submit"
+        class="rounded-xl bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white py-3 px-8 text-2xl font-bold shadow-sm transition">
+        Précédent
+    </button>
 
-        <img src="/assets/images/party.jpg"
-             class="reveal hidden dark:block max-w-full max-h-[50vh] md:max-h-[70vh] object-contain rounded-xl shadow-lg">
-    </div>
-
+    <button id="nextBtn" type="submit"
+        class="rounded-xl bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white py-3 px-8 text-2xl font-bold shadow-sm transition">
+        Suivant
+    </button>
 </div>
-
-<div class="reveal mt-auto">
-    @include('layouts.footer')
-    <p class="text-center text-gray-400 mt-6">
-        © Gentle Care 2026 - All rights reserved
-    </p>
-</div>
-
 <script src="/assets/js/anims.js"></script>
+<script src="/assets/js/history.js"></script>
 </body>
 </html>
