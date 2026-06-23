@@ -5,7 +5,11 @@
 
         <div class="reveal flex flex-col md:flex-row items-center justify-between bg-gray-500/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
-            <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/jajoudev.png" alt="JajouDev">
+            <div class="relative">
+                <div class="relative p-1 rounded-[32px] bg-gradient-to-b from-gray-400/50 to-gray-700/50 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/peoples/jajoudev.jpg" alt="JajouDev" class="w-96 h-96 object-cover rounded-[28px]">
+                </div>
+            </div>
 
             <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
                 <h2 class="text-4xl text-white font-bold">JajouDev</h2>
@@ -31,7 +35,11 @@
 
         <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-[#2600FF]/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
-            <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/forcerion.png" alt="JajouDev">
+            <div class="relative">
+                <div class="relative p-1 rounded-[32px] bg-gradient-to-b from-purple-400/50 to-purple-700/50 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/peoples/forcerion.png" alt="Forcerion" class="w-96 h-96 object-cover rounded-[28px]">
+                </div>
+            </div>
 
             <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
                 <h2 class="text-4xl text-white font-bold">Forcerion</h2>
@@ -57,7 +65,11 @@
 
         <div class="reveal flex flex-col md:flex-row items-center justify-between bg-[#6e7346]/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
-            <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/fonceurok.png" alt="JajouDev">
+            <div class="relative">
+                <div class="relative p-1 rounded-[32px] bg-gradient-to-b from-lime-50/50 to-lime-400/50 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/peoples/fonceurok.png" alt="FonceurOk" class="w-96 h-96 object-cover rounded-[28px]">
+                </div>
+            </div>
 
             <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
                 <h2 class="text-4xl text-white font-bold">FonceurOk</h2>
@@ -80,7 +92,11 @@
 
         <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-blue-950/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
 
-            <img class="w-96 h-96 object-cover shadow-md" src="/assets/images/peoples/necromania.png" alt="JajouDev">
+            <div class="relative">
+                <div class="relative p-1 rounded-[32px] bg-gradient-to-b from-blue-400/50 to-blue-700/50 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    <img src="/assets/images/peoples/necromania.jpg" alt="NECROMANIA" class="w-96 h-96 object-cover rounded-[28px]">
+                </div>
+            </div>
 
             <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
                 <h2 class="text-4xl text-white font-bold">NECRO MANIA</h2>
