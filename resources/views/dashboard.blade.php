@@ -1,12 +1,38 @@
 <?php
 
 use App\Models\Citation;
+
 $citations = Citation::all(['author', 'content']);
 
 ?>
 
 <x-app-layout>
     @if(auth()->user() && auth()->user()->role === 'user')
+    @if(!$hasCompletedQuestionnaire)
+    <div id="modal" class="fixed text-center inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+        <div class="bg-white/25 backdrop-blur-md rounded-2xl p-10 max-w-lg w-full mx-4" style="border: 1px solid rgba(255,255,255,0.3)">
+
+            <h2 class="text-3xl font-bold text-white mb-6">
+                Questionnaire du bien-être
+            </h2>
+
+            <p class="text-white/80 leading-relaxed mb-10 text-base">
+                Bienvenue sur GentleCare ! Avant de commencer, prends 2 minutes
+                pour répondre à notre questionnaire. Il nous permet de mieux
+                comprendre comment tu te sens et de te proposer du contenu adapté 💛
+            </p>
+
+            <div class="flex justify-center">
+                <a href="{{ route('questionnaire.show', 1) }}"
+                    class="border border-white/60 text-white font-bold tracking-widest text-sm px-16 py-3 rounded-full hover:bg-white/10 transition">
+                    SUIVANT
+                </a>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    <h1>Bienvenue {{ Auth::user()->name }}</h1>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
         <h2 class="text-white text-2xl font-bold mb-6">Mon évolution</h2>
 
@@ -187,7 +213,7 @@ $citations = Citation::all(['author', 'content']);
                 currentIndex = getRandomIndex();
                 const c = citations[currentIndex];
                 document.getElementById('citation-contenu').textContent = '« ' + c.content + ' »';
-document.getElementById('citation-auteur').textContent  = '— ' + c.author;
+                document.getElementById('citation-auteur').textContent = '— ' + c.author;
 
                 // Fade in
                 container.style.opacity = '1';
