@@ -11,8 +11,9 @@
                 <h2 class="text-4xl text-white font-bold">JajouDev</h2>
 
                 <p class="text-white/90 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat quas officia magni ea lorem irure occaecat duis obcaecati
-                    vitae ea nesciunt. Dolores inventore architecto sed aute commodo cillum enim proident. Voluptas dolorem dolorem ex sint magnamquaerat
+                    Coucou, je m'appelle Jajou. Je suis le membre de la team qui a eu l'idée de ce projet ambitieux ! Pour moi c'est important que la santé mentale et 
+                    le bien-être des personnes soient pris au sérieux surtout à une époque où tout va vite et où on oublie souvent de prendre soin de soi.
+                    J'espère que ce projet te fait du bien autant qu'il m'en a fait de le créer 💛
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
@@ -63,9 +64,9 @@
                 <h2 class="text-4xl text-white font-bold">FonceurOk</h2>
 
                 <p class="text-white/90 leading-relaxed">
-                    Salut, je m'appelle FonceurOk. Je suis l'un des développeurs qui ont travaillé sur ce projet, 
-                    et je suis vraiment heureux d'avoir pu y contribuer. 
-                    Pouvoir aider les gens à se sentir mieux me procure beaucoup de satisfaction. 
+                    Salut, je m'appelle FonceurOk. Je suis l'un des développeurs qui ont travaillé sur ce projet,
+                    et je suis vraiment heureux d'avoir pu y contribuer.
+                    Pouvoir aider les gens à se sentir mieux me procure beaucoup de satisfaction.
                     J'espère que notre site vous a plu.
                 </p>
 
@@ -104,7 +105,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="/assets/js/anims.js"></script>
 
 </x-app-layout>
