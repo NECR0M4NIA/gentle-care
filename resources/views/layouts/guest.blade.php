@@ -21,10 +21,10 @@
 <body class="bg-cover bg-center bg-no-repeat font-sans text-gray-900 antialiased">
 
     <div class="fixed inset-0 -z-10">
-        <img src="/assets/images/forest.jpg"
+        <img src="/assets/images/light/forest.jpg"
              class="w-full h-full object-cover dark:hidden">
 
-        <img src="/assets/images/forest-night.jpg"
+        <img src="/assets/images/dark/forest.jpg"
              class="hidden dark:block w-full h-full object-cover">
     </div>
 

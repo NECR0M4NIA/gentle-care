@@ -21,8 +21,8 @@
     class="overflow-y-auto pt-[78px] bg-cover bg-center bg-no-repeat bg-fixed">
 
     <div class="fixed inset-0 -z-10">
-        <img src="/assets/images/background-light.png" class="w-full h-full object-cover dark:hidden">
-        <img src="/assets/images/bg.gif" class="hidden dark:block w-full h-full object-cover">
+        <img src="/assets/images/light/background.png" class="w-full h-full object-cover dark:hidden">
+        <img src="/assets/images/dark/bg.gif" class="hidden dark:block w-full h-full object-cover">
     </div>
 
     <div class="min-h-screen">

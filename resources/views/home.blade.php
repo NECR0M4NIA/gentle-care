@@ -21,10 +21,10 @@
 <body class="opacity-0 bg-cover bg-center bg-no-repeat flex flex-col min-h-screen w-screen overflow-hidden px-6 lg:px-24 lg:py-6">
 
  <div class="fixed inset-0 -z-10">
-        <img src="/assets/images/sunset-beach-bg.png"
+        <img src="/assets/images/light/sunset-beach-bg.png"
              class="w-full h-full object-cover dark:hidden bg-[image:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45))]">
 
-        <img src="/assets/images/sunset-beach-bg-night.jpg"
+        <img src="/assets/images/dark/sunset-beach-bg.jpg"
              class="hidden dark:block w-full h-full object-cover">
     </div>
 

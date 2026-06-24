@@ -20,10 +20,10 @@
 <body class="relative min-h-screen w-screen flex flex-col px-6 lg:px-24 lg:py-6 bg-cover bg-center overflow-x-hidden">
 
     <div class="fixed inset-0 -z-10">
-        <img src="/assets/images/mountain.jpg"
+        <img src="/assets/images/light/mountain.jpg"
              class="w-full h-full object-cover dark:hidden">
 
-        <img src="/assets/images/mountains-dark.avif"
+        <img src="/assets/images/dark/mountains.avif"
              class="hidden dark:block w-full h-full object-cover">
     </div>
 
@@ -41,10 +41,10 @@
         <div class="reveal flex flex-col md:flex-row items-center justify-between bg-white/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
             <div class="relative">
                 <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/gentle-care-orange.png" alt="Gentle Care" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/light/gentle-care.png" alt="Gentle Care" class="object-cover rounded-[28px]">
                 </div>
                 <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/gentle-care-blue.png" alt="Gentle Care" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/dark/gentle-care.png" alt="Gentle Care" class="object-cover rounded-[28px]">
                 </div>
             </div>
             <div class="md:w-1/2">
@@ -68,10 +68,10 @@
         <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-orange-400/50 dark:bg-blue-800/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
             <div class="relative">
                 <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/sad-person.png" alt="Sad Person" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/light/sad-person.png" alt="Sad Person" class="object-cover rounded-[28px]">
                 </div>
                 <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/sad-person-blue.jpg" alt="Sad Person" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/dark/sad-person.jpg" alt="Sad Person" class="object-cover rounded-[28px]">
                 </div>
             </div>
 
@@ -91,10 +91,10 @@
    <div class="reveal grid grid-cols-1 bg-orange-600/50 dark:bg-blue-900/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8 w-full max-w-5xl mx-auto">
     <div class="mx-auto">
         <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)] w-fit">
-            <img src="/assets/images/help-others.jpg" alt="Help others" class="object-cover rounded-[28px]">
+            <img src="/assets/images/light/help-others.jpg" alt="Help others" class="object-cover rounded-[28px]">
         </div>
         <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)] w-fit">
-            <img src="/assets/images/help-others-blue.png" alt="Help others" class="object-cover rounded-[28px]">
+            <img src="/assets/images/dark/help-others.png" alt="Help others" class="object-cover rounded-[28px]">
         </div>
     </div>
 
@@ -114,10 +114,10 @@
         <div class="reveal flex flex-col md:flex-row items-center justify-between bg-white/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
             <div class="relative">
                 <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/mental-health.png" alt="Mental Health" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/light/mental-health.png" alt="Mental Health" class="object-cover rounded-[28px]">
                 </div>
                 <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/mental-health-blue.png" alt="Mental Health" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/dark/mental-health.png" alt="Mental Health" class="object-cover rounded-[28px]">
                 </div>
             </div>
             <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
@@ -132,10 +132,10 @@
         <div class="reveal flex flex-col md:flex-row-reverse items-center justify-between bg-orange-400/50 dark:bg-blue-800/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
             <div class="relative">
                 <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/hug.png" alt="Hug" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/light/hug.png" alt="Hug" class="object-cover rounded-[28px]">
                 </div>
                 <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-400 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/hug-night.png" alt="Hug" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/dark/hug.png" alt="Hug" class="object-cover rounded-[28px]">
                 </div>
             </div>
 
@@ -149,10 +149,10 @@
         <div class="reveal flex flex-col md:flex-row items-center justify-between bg-orange-600/50 dark:bg-blue-900/50 rounded-xl px-6 py-6 md:px-12 md:py-8 gap-8">
             <div class="relative">
                 <div class="relative p-1 dark:hidden rounded-[32px] bg-orange-600/50 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/welcome.png" alt="Welcome" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/light/welcome.png" alt="Welcome" class="object-cover rounded-[28px]">
                 </div>
                 <div class="relative p-1 hidden dark:block rounded-[32px] bg-orange-600/50 dark:bg-blue-700 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-                    <img src="/assets/images/welcome-night.png" alt="Welcome" class="object-cover rounded-[28px]">
+                    <img src="/assets/images/dark/welcome.png" alt="Welcome" class="object-cover rounded-[28px]">
                 </div>
             </div>
             <div class="w-full md:w-1/2 flex flex-col py-4 gap-4">
