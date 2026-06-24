@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\AvisController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,7 +17,7 @@ Route::get('/histoire', function () {
 })->middleware('guest');
 
 Route::get('/history', function () {
-    return view('history2');
+    return view('histoire');
 })->middleware('guest');
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -37,13 +38,17 @@ Route::get('/a-propos', function () {
     return view('a-propos');
 })->middleware(['auth', 'verified'])->name('a-propos');
 
-Route::get('/avis', function () {
-    return view('avis');
-})->middleware(['auth', 'verified'])->name('avis');
+Route::get('/avis', [AvisController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('avis');
+
+Route::post('/avis', [AvisController::class, 'ajouter'])
+    ->middleware(['auth', 'verified'])
+    ->name('avis');;
 
 Route::get('/contact', function () {
     return view('contact');
-})->middleware(['auth', 'verified'])->name('contact');
+})->middleware('guest');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/questionnaire/{id_questionnaire}/resultat', [QuestionnaireController::class, 'resultat'])->name('questionnaire.resultat');
