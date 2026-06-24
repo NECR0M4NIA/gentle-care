@@ -23,7 +23,11 @@ class AdminController extends Controller
         $labels = $resultats->pluck('date_resultat');
         $scores = $resultats->pluck('score_total');
 
-        return view('dashboard', compact('users', 'hasCompletedQuestionnaire', 'labels', 'scores'));
+        $countVert  = $resultats->where('score_total', '<=', 20)->count();
+        $countJaune = $resultats->whereBetween('score_total', [21, 40])->count();
+        $countRouge = $resultats->where('score_total', '>=', 41)->count();
+
+        return view('dashboard', compact('users', 'hasCompletedQuestionnaire', 'labels', 'scores', 'countVert', 'countJaune', 'countRouge'));
     }
 
     public function destroy(User $user)

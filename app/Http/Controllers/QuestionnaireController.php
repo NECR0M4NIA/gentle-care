@@ -70,15 +70,6 @@ class QuestionnaireController extends Controller
             'date_resultat'  => now()->toDateString(),
         ]); 
 
-        $videos = [];
-        if($score <=40) {
-            $youtube = new YoutubeService();
-            $videos = $youtube->search('exercice respiration guidée stress');
-        } elseif ($score >= 41) {
-            $youtube = new YoutubeService();
-            $videos = $youtube->search('méditation apaisante anxiété soutien');
-        }
-
-        return view('resultat', compact('score', 'videos'));
+        return view('resultat', compact('score'));
     }
 }

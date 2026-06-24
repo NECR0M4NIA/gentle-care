@@ -1,12 +1,10 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-12 py-8">
 
-        {{-- Catégorie --}}
         <h1 class="text-4xl text-white text-center font-bold">
             {{ $question->categorie->nom_categorie }}
         </h1>
 
-        {{-- Question + Ordre --}}
         <div class="flex flex-col md:flex-row items-center justify-between">
             <h2 class="text-4xl text-white font-bold">
                 {{ $question->titre_question }}
@@ -16,7 +14,6 @@
             </p>
         </div>
 
-        {{-- Formulaire --}}
         <form action="{{ route('questionnaire.store', $id_questionnaire) }}" method="POST">
             @csrf
             <input type="hidden" name="id_question" value="{{ $question->id_question }}">
@@ -37,7 +34,6 @@
                         <span class="text-2xl text-black font-bold">
                             {{ $choix->nom_choix }}
                         </span>
-                        {{-- La valeur_choix est dans la BDD, pas besoin de l'afficher --}}
                     </label>
                 @endforeach
             </div>
