@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\AvisController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,9 +38,13 @@ Route::get('/a-propos', function () {
     return view('a-propos');
 })->middleware(['auth', 'verified'])->name('a-propos');
 
-Route::get('/avis', function () {
-    return view('avis');
-})->middleware(['auth', 'verified'])->name('avis');
+Route::get('/avis', [AvisController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('avis');
+
+Route::post('/avis', [AvisController::class, 'ajouter'])
+    ->middleware(['auth', 'verified'])
+    ->name('avis');;
 
 Route::get('/contact', function () {
     return view('contact');
