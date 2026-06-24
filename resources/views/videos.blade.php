@@ -61,41 +61,6 @@
             </div>
             @endforeach
         </div>
-        <div class="reveal opacity-0 text-center space-y-2 pb-10">
-            <h3 class="reveal opacity-0 text-white text-3xl font-bold">
-                Vous ne trouvez pas ce qu’il vous faut ?
-            </h3>
-
-            <p class="reveal opacity-0 text-white text-3xl font-bold">
-                <span class="reveal opacity-0 underline decoration-2 underline-offset-4">Recherchez</span> avec des mots-clés
-            </p>
-        </div>
-
-        <div class="reveal opacity-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            @for ($i = 1; $i <= 9; $i++)
-                <div class="reveal opacity-0 rounded-xl overflow-hidden shadow">
-
-                <img
-                    src="https://picsum.photos/500/350?random={{ $i }}"
-                    class="reveal opacity-0 w-full h-48 object-cover rounded-xl"
-                    alt="Image {{ $i }}">
-
-                <div class="pt-4">
-                    <h3 class="reveal opacity-0 text-white text-lg font-semibold">
-                        Video Recherchée {{ $i }}
-                    </h3>
-
-                    <p class="reveal opacity-0 text-white text-sm mt-1">
-                        Ceci est la description pour la vidéo {{ $i }}.
-                    </p>
-                </div>
-
-        </div>
-        @endfor
-
     </div>
-    </div>
-
     <script src="/assets/js/anims.js"></script>
 </x-app-layout>
