@@ -34,7 +34,7 @@
         @endforeach
     </div>
 
-    <div class=" flex items-center justify-center px-10">
+    <div class="reveal flex items-center justify-center px-10">
 
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
 
