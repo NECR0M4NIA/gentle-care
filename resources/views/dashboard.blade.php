@@ -344,10 +344,6 @@ $citations = Citation::all(['author', 'content']);
     </div>
     @endif
 
-    @if(auth()->user() && auth()->user()->role === 'user')
-    <!--  -->
-    @endif
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var search = document.getElementById('searchInput');
