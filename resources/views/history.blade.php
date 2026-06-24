@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -5,26 +7,25 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icons/gentle-care-orange.svg" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/svg+xml" href="/assets/icons/gentle-care-blue.svg" media="(prefers-color-scheme: dark)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Histoire</title>
+    <title>Histoire — Gentle Care</title>
     @fonts
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
-
     {{--
         Route (routes/web.php) :
         Route::get('/histoire', fn () => view('history'))->name('history');
     --}}
-
     <style>
-        /* ─── Base ─── */
+        /* ── Reset ── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
 
+        /* ── Body / fond ── */
         body {
             font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
             background-image:
-                linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+                linear-gradient(rgba(0,0,0,.42), rgba(0,0,0,.42)),
                 url('/assets/images/montagne.png');
             background-size: cover;
             background-position: center;
@@ -37,366 +38,414 @@
             overflow-x: hidden;
         }
 
-        /* ─── Slide container ─── */
+        /* ── Navbar wrap ── */
+        .gc-nav-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 20px 5vw 0;
+        }
+
+        /* ── Slide engine ── */
         #slides-wrap {
             flex: 1;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            padding: 0 6vw;
-            max-width: 1100px;
+            padding: 0 5vw;
+            max-width: 1080px;
             width: 100%;
             margin: 0 auto;
         }
 
-        /* ─── Individual slide ─── */
         .slide {
             display: none;
             flex-direction: column;
-            gap: 32px;
-            padding-bottom: 40px;
-            /* start hidden for initial load reveal */
-            opacity: 0;
+            gap: 22px;
+            padding: 28px 0 20px;
+            flex: 1;
         }
-        .slide.active {
-            display: flex;
-        }
+        .slide.active { display: flex; }
 
-        /* enter animations */
-        .slide.anim-enter-right { animation: enterFromRight .5s cubic-bezier(.4,0,.2,1) forwards; }
-        .slide.anim-enter-left  { animation: enterFromLeft  .5s cubic-bezier(.4,0,.2,1) forwards; }
+        /* transitions */
+        @keyframes slideInRight  { from { opacity:0; transform:translateX(70px) }  to { opacity:1; transform:translateX(0) } }
+        @keyframes slideInLeft   { from { opacity:0; transform:translateX(-70px) } to { opacity:1; transform:translateX(0) } }
+        @keyframes slideOutLeft  { from { opacity:1; transform:translateX(0) }      to { opacity:0; transform:translateX(-70px) } }
+        @keyframes slideOutRight { from { opacity:1; transform:translateX(0) }      to { opacity:0; transform:translateX(70px) } }
 
-        /* exit animations (keep display:flex while animating out) */
-        .slide.anim-exit-left  { display: flex; animation: exitToLeft   .4s cubic-bezier(.4,0,.2,1) forwards; pointer-events: none; }
-        .slide.anim-exit-right { display: flex; animation: exitToRight  .4s cubic-bezier(.4,0,.2,1) forwards; pointer-events: none; }
+        .anim-in-right  { animation: slideInRight  .5s cubic-bezier(.4,0,.2,1) forwards; }
+        .anim-in-left   { animation: slideInLeft   .5s cubic-bezier(.4,0,.2,1) forwards; }
+        .anim-out-left  { display:flex !important; animation: slideOutLeft  .38s cubic-bezier(.4,0,.2,1) forwards; pointer-events:none; }
+        .anim-out-right { display:flex !important; animation: slideOutRight .38s cubic-bezier(.4,0,.2,1) forwards; pointer-events:none; }
 
-        @keyframes enterFromRight {
-            from { opacity: 0; transform: translateX(60px); }
-            to   { opacity: 1; transform: translateX(0);    }
-        }
-        @keyframes enterFromLeft {
-            from { opacity: 0; transform: translateX(-60px); }
-            to   { opacity: 1; transform: translateX(0);     }
-        }
-        @keyframes exitToLeft {
-            from { opacity: 1; transform: translateX(0);     }
-            to   { opacity: 0; transform: translateX(-60px); }
-        }
-        @keyframes exitToRight {
-            from { opacity: 1; transform: translateX(0);    }
-            to   { opacity: 0; transform: translateX(60px); }
-        }
-
-        /* ─── FX (scroll / load reveal) ─── */
+        /* ── Reveal animations (fx) ── */
         .fx {
             opacity: 0;
-            transition: opacity .75s cubic-bezier(.4,0,.2,1), transform .75s cubic-bezier(.4,0,.2,1);
-            will-change: opacity, transform;
+            transition: opacity .75s cubic-bezier(.4,0,.2,1),
+                        transform .75s cubic-bezier(.4,0,.2,1);
         }
-        .fx-up    { transform: translateY(38px); }
+        .fx-up    { transform: translateY(36px); }
         .fx-scale { transform: scale(.9); }
-        .fx-left  { transform: translateX(-38px); }
-        .fx-right { transform: translateX(38px); }
-        .fx.is-visible { opacity: 1; transform: translate(0,0) scale(1); }
-
+        .fx-left  { transform: translateX(-36px); }
+        .fx-right { transform: translateX(36px); }
+        .fx.v     { opacity:1; transform:translate(0,0) scale(1); }
         @media (prefers-reduced-motion: reduce) {
-            .fx, .slide { transition: none !important; animation: none !important; opacity: 1 !important; transform: none !important; }
+            .fx, .slide { transition:none!important; animation:none!important; opacity:1!important; transform:none!important; }
         }
 
-        /* ─── Navbar ─── */
-        .gc-navbar-wrap {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            max-width: 1100px;
-            width: 100%;
-            margin: 24px auto 0;
-            padding: 0 6vw;
-        }
-
-        /* ─── Panel (card) ─── */
-        .panel {
-            background: rgba(0,0,0,.25);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,255,255,.12);
-            border-radius: 20px;
-            padding: 32px;
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            box-shadow: 0 12px 30px rgba(0,0,0,.25);
-        }
-        @media (max-width: 760px) { .panel { flex-direction: column; } }
-
-        /* panel variant: golden (maquette slide 3) */
-        .panel-gold {
-            background: rgba(120, 90, 20, .35);
-            border-color: rgba(248, 184, 3, .3);
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .panel-img {
-            flex-shrink: 0;
-            width: 220px;
-            height: 220px;
-            border-radius: 16px;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 8px 18px rgba(0,0,0,.25);
-        }
-        .panel-img img { width: 100%; height: 100%; object-fit: cover; }
-        @media (max-width: 760px) { .panel-img { width: 100%; height: 200px; } }
-
-        .panel-photo {
-            flex-shrink: 0;
-            width: 320px;
-            height: 240px;
-            border-radius: 16px;
-            border: 4px solid rgba(255,141,40,.7);
-            overflow: hidden;
-            box-shadow: 0 8px 18px rgba(0,0,0,.25);
-        }
-        .panel-photo img { width: 100%; height: 100%; object-fit: cover; }
-        @media (max-width: 760px) { .panel-photo { width: 100%; height: 200px; } }
-
-        /* gold panel: centred full-width photo */
-        .gold-photo {
-            width: 100%;
-            max-width: 520px;
-            height: 280px;
-            border-radius: 16px;
-            border: 3px solid rgba(248,184,3,.6);
-            overflow: hidden;
-            box-shadow: 0 8px 18px rgba(0,0,0,.3);
-        }
-        .gold-photo img { width: 100%; height: 100%; object-fit: cover; }
-
-        p.copy {
-            font-size: 15px;
-            line-height: 1.75;
-            color: rgba(255,255,255,.9);
-        }
-        p.copy-center {
-            text-align: center;
-            font-size: 14px;
-            line-height: 1.8;
-            color: rgba(255,255,255,.88);
-        }
-
-        h2.slide-title {
-            font-size: clamp(30px, 5vw, 54px);
+        /* ── Typography ── */
+        h2.stitle {
+            font-size: clamp(26px, 4.5vw, 52px);
             font-weight: 900;
             text-transform: uppercase;
             text-align: center;
-            text-shadow: 0 2px 4px rgba(0,0,0,.4);
-            letter-spacing: .3px;
+            text-shadow: 0 2px 6px rgba(0,0,0,.45);
         }
 
-        /* ─── Nav buttons (Précédent / Suivant) ─── */
+        /* ── Cards / panels ── */
+        .card {
+            background: rgba(255,255,255,.08);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,.14);
+            border-radius: 18px;
+            padding: 24px 28px;
+            box-shadow: 0 10px 28px rgba(0,0,0,.22);
+        }
+
+        /* ─── SLIDE 1 ─── */
+        .s1-block {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        @media (max-width: 680px) { .s1-block { flex-direction: column; } }
+        .gc-logo-box {
+            flex-shrink: 0;
+            width: 200px; height: 200px;
+            background: #fff;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,.25);
+        }
+        .gc-logo-box img { width: 100%; height: 100%; object-fit: cover; }
+        @media (max-width: 680px) { .gc-logo-box { width: 100%; height: 180px; } }
+
+        .sad-photo {
+            flex-shrink: 0;
+            width: 260px; height: 190px;
+            border-radius: 14px;
+            border: 3px solid rgba(255,141,40,.65);
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,.25);
+        }
+        .sad-photo img { width: 100%; height: 100%; object-fit: cover; }
+        @media (max-width: 680px) { .sad-photo { width: 100%; height: 200px; } }
+
+        p.copy {
+            font-size: 14px;
+            line-height: 1.75;
+            color: rgba(255,255,255,.9);
+        }
+
+        /* ─── SLIDE 2 ─── */
+        .s2-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+        .s2-photo {
+            width: 100%;
+            max-width: 460px;
+            height: 240px;
+            border-radius: 16px;
+            border: 3px solid rgba(248,184,3,.55);
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,.3);
+        }
+        .s2-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ─── SLIDE 3 ─── */
+        .s3-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .s3-step.reverse { flex-direction: row-reverse; }
+        @media (max-width: 680px) { .s3-step, .s3-step.reverse { flex-direction: column; } }
+
+        .s3-img {
+            flex-shrink: 0;
+            width: 200px; height: 150px;
+            border-radius: 14px;
+            border: 2px solid rgba(248,184,3,.5);
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0,0,0,.3);
+        }
+        .s3-img.round { border-radius: 18px; }
+        .s3-img img { width: 100%; height: 100%; object-fit: cover; }
+        @media (max-width: 680px) { .s3-img { width: 100%; height: 180px; } }
+
+        /* ─── SLIDE 4 ─── */
+        .s4-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .s4-box {
+            background: rgba(255,255,255,.1);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(255,255,255,.28);
+            border-radius: 20px;
+            padding: 40px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+            max-width: 380px;
+            width: 100%;
+        }
+        .s4-box h2 {
+            font-size: clamp(22px, 3.5vw, 34px);
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,.35);
+        }
+        .btn-register {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,.7);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 48px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background .2s, color .2s, border-color .2s, transform .2s;
+            text-decoration: none;
+        }
+        .btn-register:hover { background: rgba(255,255,255,.18); border-color: #fff; transform: scale(1.04); }
+
+        /* ── Nav boutons ── */
         .btn-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 0 24px;
+            padding: 8px 0 4px;
+            flex-shrink: 0;
         }
         .btn-nav {
-            display: inline-block;
+            background: #F8B803;
+            color: #1b1b18;
             font-weight: 700;
             font-size: 15px;
-            padding: 14px 36px;
+            padding: 13px 34px;
             border-radius: 999px;
-            text-decoration: none;
-            cursor: pointer;
             border: none;
-            box-shadow: 0 6px 14px rgba(0,0,0,.25);
-            transition: transform .2s ease, background .2s ease, opacity .2s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 14px rgba(0,0,0,.28);
+            transition: transform .2s ease, opacity .25s ease;
         }
-        .btn-nav:hover  { transform: scale(1.05); }
+        .btn-nav:hover  { transform: scale(1.06); }
         .btn-nav:active { transform: scale(.97); }
-        .btn-prev { background: #F8B803; color: #1b1b18; }
-        .btn-next { background: #F8B803; color: #1b1b18; }
-        .btn-nav.hidden { opacity: 0; pointer-events: none; }
+        .btn-nav.ghost  { opacity: 0; pointer-events: none; }
 
-        /* ─── Progress dots ─── */
-        .dots {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,.4);
-            transition: background .3s, transform .3s;
-        }
-        .dot.active { background: #F8B803; transform: scale(1.4); }
+        /* ── Progress dots ── */
+        .dots { display:flex; gap:8px; align-items:center; }
+        .dot  { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.35); transition: background .3s, transform .3s; }
+        .dot.a{ background:#F8B803; transform:scale(1.5); }
 
-        /* ─── Footer ─── */
-        .gc-footer-wrap {
-            max-width: 1100px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 6vw 12px;
-        }
-        .copyright {
-            text-align: center;
-            font-size: 12px;
-            color: rgba(255,255,255,.5);
-            padding-bottom: 16px;
-        }
+        /* ── Footer ── */
+        .gc-footer-wrap { padding: 0 5vw 0; max-width:1080px; width:100%; margin:0 auto; }
+        .copyright { text-align:center; font-size:12px; color:rgba(255,255,255,.45); padding:10px 0 14px; }
     </style>
 </head>
 <body>
 
-    {{-- Navbar --}}
-    <div class="gc-navbar-wrap fx fx-up" style="transition-delay:0s">
+    <div class="gc-nav-wrap fx fx-up" style="transition-delay:0s">
         @include('layouts.navbar')
     </div>
 
-    {{-- Slides wrapper --}}
-    <div id="slides-wrap" style="padding-top: 36px;">
+    <div id="slides-wrap">
 
-        {{-- ══════════════════════════════════════════════
+        {{-- ════════════════════════════════════
              SLIDE 1 — Qui sommes nous ?
-             + Pourquoi nous avons créé ce site ?
-        ══════════════════════════════════════════════ --}}
-        <div class="slide" data-slide="0">
+                     + Pourquoi on a créé ce site
+        ════════════════════════════════════ --}}
+        <div class="slide" data-s="0">
 
-            {{-- Section : Qui sommes nous --}}
-            <h2 class="fx fx-up slide-title" style="transition-delay:.08s">Qui sommes nous ?</h2>
-            <div class="panel">
-                <div class="fx fx-scale panel-img" style="transition-delay:.2s">
-                    <img src="/assets/images/montagne.png" alt="Logo Gentle Care">
-                </div>
-                <p class="fx fx-right copy" style="transition-delay:.32s">
-                    Nous sommes un jeune groupe d'étudiants au sein de l'Eden School Paris,
-                    actuellement en deuxième année d'études. Notre groupe est composé d'étudiants
-                    de tous âges, comprises entre 15 et 19 ans, ce qui nous permet de bénéficier
-                    de points de vue variés et d'une grande richesse dans nos échanges.
-                    <br><br>
-                    Passionnés par les nouvelles technologies, la programmation et l'innovation
-                    numérique, nous développons nos compétences à travers différents projets et
-                    relevons de nouveaux défis ensemble.
-                </p>
-            </div>
+            <h2 class="stitle fx fx-up" style="transition-delay:.08s">Qui sommes nous ?</h2>
 
-            {{-- Section : Pourquoi --}}
-            <h2 class="fx fx-up slide-title" style="transition-delay:.1s">Pourquoi nous avons créé ce site ?</h2>
-            <div class="panel">
-                <p class="fx fx-left copy" style="transition-delay:.22s">
-                    Nous avons créé ce site parce que, dans notre génération de plus en plus de
-                    personnes notamment les jeunes souffrent de dépression et de mal-être. C'est
-                    pour ça qu'il est important pour nous de bénéficier et de favoriser le
-                    bien-être de chacun.
-                    <br><br>
-                    Voilà la raison de l'existence de ce site, d'après nous tout le monde mérite
-                    d'obtenir du bonheur et surtout du bien-être.
-                </p>
-                <div class="fx fx-scale panel-photo" style="transition-delay:.34s">
-                    <img src="/assets/images/montagne.png" alt="Illustration bien-être">
+            <div class="card fx fx-up" style="transition-delay:.18s">
+                <div class="s1-block">
+                    <div class="gc-logo-box fx fx-scale" style="transition-delay:.24s">
+                        <img src="/assets/images/logo-gc.png" alt="Logo GC"
+                             onerror="this.src='/assets/images/montagne.png'">
+                    </div>
+                    <p class="copy fx fx-right" style="transition-delay:.34s">
+                        Nous sommes un jeune groupe d'étudiants au sein de l'Eden School
+                        Paris, actuellement en deuxième année d'études. Notre groupe est
+                        composé d'étudiants de tous âges, comprises entre 15 et 19 ans, ce
+                        qui nous permet de bénéficier de points de vue variés et d'une
+                        grande richesse dans nos échanges.
+                        <br><br>
+                        Passionnés par les nouvelles technologies, la programmation et
+                        l'innovation numérique, nous développons nos compétences à travers
+                        différents projets et relevons de nouveaux défis ensemble.
+                    </p>
                 </div>
             </div>
 
-            <div class="btn-row fx fx-up" style="transition-delay:.15s">
-                <button class="btn-nav btn-prev hidden" onclick="goTo(currentSlide - 1)">Précédent</button>
-                <div class="dots" id="dots-0"></div>
-                <button class="btn-nav btn-next" onclick="goTo(currentSlide + 1)">Suivant</button>
+            <h2 class="stitle fx fx-up" style="transition-delay:.12s">
+                Pourquoi nous avons<br>créé ce site ?
+            </h2>
+
+            <div class="card fx fx-up" style="transition-delay:.22s">
+                <div class="s1-block">
+                    <p class="copy fx fx-left" style="transition-delay:.3s">
+                        Nous avons créé ce site parce que, dans notre génération de plus en
+                        plus de personnes notamment les jeunes souffrent de dépression et de
+                        mal-être. C'est pour ça qu'il est important pour nous de bénéficier
+                        et de favoriser le bien-être de chacun.
+                        <br><br>
+                        Voilà la raison de l'existence de ce site, d'après nous tout le monde
+                        mérite d'obtenir du bonheur et surtout du bien-être.
+                    </p>
+                    <div class="sad-photo fx fx-scale" style="transition-delay:.38s">
+                        <img src="/assets/images/sad-person.jpg" alt="Illustration bien-être"
+                             onerror="this.src='/assets/images/montagne.png'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-row fx fx-up" style="transition-delay:.14s">
+                <button class="btn-nav ghost" onclick="go(-1)">Précédent</button>
+                <div class="dots" id="d0"></div>
+                <button class="btn-nav" onclick="go(1)">Suivant</button>
             </div>
         </div>
 
-        {{-- ══════════════════════════════════════════════
+        {{-- ════════════════════════════════════
              SLIDE 2 — À quoi sert le site ?
-        ══════════════════════════════════════════════ --}}
-        <div class="slide" data-slide="1">
+        ════════════════════════════════════ --}}
+        <div class="slide" data-s="1">
 
-            <h2 class="fx fx-up slide-title" style="transition-delay:.08s">À quoi sert le site ?</h2>
+            <h2 class="stitle fx fx-up" style="transition-delay:.08s">À quoi sert le site ?</h2>
 
-            <div class="panel panel-gold">
-                <div class="fx fx-scale gold-photo" style="transition-delay:.2s">
-                    <img src="/assets/images/montagne.png" alt="Illustration aide">
+            <div class="card s2-inner fx fx-up" style="transition-delay:.18s">
+                <div class="s2-photo fx fx-scale" style="transition-delay:.26s">
+                    <img src="/assets/images/hike-help.jpg" alt="Aide"
+                         onerror="this.src='/assets/images/montagne.png'">
                 </div>
-                <p class="fx fx-up copy-center" style="transition-delay:.32s">
-                    Le site sert à toutes les personnes qui souffrent de mal-être et qui sont en
-                    quête du bien-être. Dans celui-ci, vous pourrez avoir votre propre espace avec
-                    des jeux ludiques, des citations inédits, des vidéos permettant d'aider dans
-                    votre situation et des exercices de respiration et de méditation incluant un
-                    graphique du bien-être permettant de consulter votre humeur chaque jour.
+                <p class="copy fx fx-up" style="transition-delay:.36s; text-align:center; max-width:620px;">
+                    Le site sert à toutes les personnes qui souffrent de mal-être et qui sont
+                    en quête du bien-être. Dans celui-ci, vous pourrez avoir votre propre
+                    espace avec des jeux ludiques, des citations inédits, des vidéos
+                    permettant d'aider dans votre situation et des exercices de respiration et
+                    de méditation incluant un graphique du bien-être permettant de consulter
+                    votre humeur chaque jour.
                 </p>
             </div>
 
-            <div class="btn-row fx fx-up" style="transition-delay:.15s">
-                <button class="btn-nav btn-prev" onclick="goTo(currentSlide - 1)">Précédent</button>
-                <div class="dots" id="dots-1"></div>
-                <button class="btn-nav btn-next" onclick="goTo(currentSlide + 1)">Suivant</button>
+            <div class="btn-row fx fx-up" style="transition-delay:.14s">
+                <button class="btn-nav" onclick="go(-1)">Précédent</button>
+                <div class="dots" id="d1"></div>
+                <button class="btn-nav" onclick="go(1)">Suivant</button>
             </div>
         </div>
 
-        {{-- ══════════════════════════════════════════════
-             SLIDE 3 — (à personnaliser)
-        ══════════════════════════════════════════════ --}}
-        <div class="slide" data-slide="2">
+        {{-- ════════════════════════════════════
+             SLIDE 3 — Comment fonctionne le site ?
+        ════════════════════════════════════ --}}
+        <div class="slide" data-s="2">
 
-            <h2 class="fx fx-up slide-title" style="transition-delay:.08s">Comment ça marche ?</h2>
+            <h2 class="stitle fx fx-up" style="transition-delay:.06s">Comment fonctionne le site ?</h2>
 
-            <div class="panel panel-gold">
-                <div class="fx fx-scale gold-photo" style="transition-delay:.2s">
-                    <img src="/assets/images/montagne.png" alt="Illustration fonctionnement">
+            {{-- Étape 1 : cerveau à droite, texte à gauche --}}
+            <div class="card fx fx-up" style="transition-delay:.14s">
+                <div class="s3-step reverse">
+                    <div class="s3-img round fx fx-scale" style="transition-delay:.22s">
+                        <img src="/assets/images/brain-heart.png" alt="Cerveau"
+                             onerror="this.src='/assets/images/montagne.png'">
+                    </div>
+                    <p class="copy fx fx-left" style="transition-delay:.3s">
+                        Dans un premier temps une fois que vous aurez fini de lire cette page,
+                        vous serez redirigé sur une autre page permettant de faire votre premier
+                        pas de guérison et créer votre propre espace chez nous en renseignant
+                        vos informations personnelles qu'on a garde précieusement dans notre
+                        base de données 100% sécurisée.
+                    </p>
                 </div>
-                <p class="fx fx-up copy-center" style="transition-delay:.32s">
-                    Créez votre compte, répondez à quelques questions sur votre état du moment,
-                    puis accédez à votre espace personnel. Chaque jour, de nouveaux contenus
-                    s'adaptent à votre humeur : citations, exercices de respiration, jeux et
-                    vidéos bien-être. Suivez l'évolution de votre bien-être grâce au graphique
-                    qui se met à jour au fil de vos journées.
-                </p>
             </div>
 
-            <div class="btn-row fx fx-up" style="transition-delay:.15s">
-                <button class="btn-nav btn-prev" onclick="goTo(currentSlide - 1)">Précédent</button>
-                <div class="dots" id="dots-2"></div>
-                <button class="btn-nav btn-next" onclick="goTo(currentSlide + 1)">Suivant</button>
+            {{-- Étape 2 : couple à droite, texte à gauche --}}
+            <div class="card fx fx-up" style="transition-delay:.18s">
+                <div class="s3-step">
+                    <p class="copy fx fx-left" style="transition-delay:.26s">
+                        Ensuite dans un second temps une fois que vous aurez fini de créer
+                        votre propre espace chez nous, vous devrez remplir un questionnaire
+                        qui contient 20 questions afin d'en apprendre un peu plus sur vous,
+                        en choisissant des réponses en fonction de votre situation afin de
+                        vous aider au maximum créant un algorithme unique pour vous.
+                    </p>
+                    <div class="s3-img fx fx-scale" style="transition-delay:.34s">
+                        <img src="/assets/images/couple-sunset.jpg" alt="Couple"
+                             onerror="this.src='/assets/images/montagne.png'">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Étape 3 : groupe à gauche, texte à droite --}}
+            <div class="card fx fx-up" style="transition-delay:.22s">
+                <div class="s3-step reverse">
+                    <p class="copy fx fx-right" style="transition-delay:.3s">
+                        Et pour finir une fois que vous aurez rempli le questionnaire, vous
+                        avez accès à votre propre espace de détente uniquement pour vous,
+                        incluant des vidéos, des exercices de respiration et méditation, des
+                        jeux ludiques… En résumé, tout en votre disposition pour bénéficier
+                        votre bien-être en prenant votre chemin de guérison à l'aide de
+                        notre site web.
+                    </p>
+                    <div class="s3-img fx fx-scale" style="transition-delay:.38s">
+                        <img src="/assets/images/group-sunset.jpg" alt="Groupe"
+                             onerror="this.src='/assets/images/montagne.png'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-row fx fx-up" style="transition-delay:.14s">
+                <button class="btn-nav" onclick="go(-1)">Précédent</button>
+                <div class="dots" id="d2"></div>
+                <button class="btn-nav" onclick="go(1)">Suivant</button>
             </div>
         </div>
 
-        {{-- ══════════════════════════════════════════════
-             SLIDE 4 — Dernière slide (CTA)
-        ══════════════════════════════════════════════ --}}
-        <div class="slide" data-slide="3">
+        {{-- ════════════════════════════════════
+             SLIDE 4 — Êtes-vous prêts ?
+        ════════════════════════════════════ --}}
+        <div class="slide" data-s="3">
 
-            <h2 class="fx fx-up slide-title" style="transition-delay:.08s">Prêt à commencer ?</h2>
-
-            <div class="panel panel-gold">
-                <div class="fx fx-scale gold-photo" style="transition-delay:.2s">
-                    <img src="/assets/images/montagne.png" alt="Illustration départ">
+            <div class="s4-center">
+                <div class="s4-box fx fx-scale" style="transition-delay:.12s">
+                    <h2 class="fx fx-up" style="transition-delay:.22s">Êtes-vous prêts à guérir ?</h2>
+                    <a href="/register" class="btn-register fx fx-up" style="transition-delay:.34s">
+                        Register
+                    </a>
                 </div>
-                <p class="fx fx-up copy-center" style="transition-delay:.32s">
-                    Rejoignez la communauté Gentle Care et prenez soin de votre bien-être au quotidien.
-                    Chaque jour est une nouvelle opportunité de vous sentir mieux.
-                    <br><br>
-                    Créez votre compte gratuitement et commencez dès maintenant votre chemin
-                    vers plus de sérénité.
-                </p>
-                <a href="/"
-                   class="fx fx-up btn-nav btn-next"
-                   style="transition-delay:.44s; display:inline-block; background:#FF8D28;">
-                    Accéder au site
-                </a>
             </div>
 
-            <div class="btn-row fx fx-up" style="transition-delay:.15s">
-                <button class="btn-nav btn-prev" onclick="goTo(currentSlide - 1)">Précédent</button>
-                <div class="dots" id="dots-3"></div>
-                <button class="btn-nav btn-next hidden" onclick="goTo(currentSlide + 1)">Suivant</button>
+            <div class="btn-row fx fx-up" style="transition-delay:.1s">
+                <button class="btn-nav" onclick="go(-1)">Précédent</button>
+                <div class="dots" id="d3"></div>
+                <button class="btn-nav ghost">Suivant</button>
             </div>
         </div>
 
     </div>{{-- /slides-wrap --}}
 
-    {{-- Footer --}}
     <div class="gc-footer-wrap">
         @include('layouts.footer')
     </div>
@@ -404,145 +453,108 @@
 
     <script src="/assets/js/anims.js"></script>
     <script>
-    // ─────────────────────────────────────────────────
-    //  Config
-    // ─────────────────────────────────────────────────
-    var TOTAL  = 4;              // nombre total de slides
-    var ANIM_MS = 420;           // durée transition (doit ≥ animation CSS exit)
+    // ─── Config ───────────────────────────────────────
+    var TOTAL   = 4;
+    var ANIM_MS = 400;    // durée exit
 
-    var currentSlide = 0;
-    var isAnimating  = false;
+    var cur     = 0;
+    var busy    = false;
+    var fxObs   = null;
 
-    // ─────────────────────────────────────────────────
-    //  Init
-    // ─────────────────────────────────────────────────
+    // ─── Init ─────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', function () {
-        buildDots();
-        showSlide(0, null); // affiche la 1ère slide sans animation
+        buildAllDots();
+        activateSlide(0, null);
     });
 
-    // ─────────────────────────────────────────────────
-    //  Navigation
-    // ─────────────────────────────────────────────────
-    function goTo(target) {
-        if (isAnimating) return;
+    // ─── Navigation ───────────────────────────────────
+    function go(delta) {
+        if (busy) return;
+        var target = cur + delta;
         if (target < 0 || target >= TOTAL) return;
+        busy = true;
 
-        isAnimating = true;
-        var direction = target > currentSlide ? 'forward' : 'backward';
-
-        var outSlide = getSlide(currentSlide);
-        var exitClass = direction === 'forward' ? 'anim-exit-left' : 'anim-exit-right';
-
-        // Lance l'exit sur la slide actuelle
-        outSlide.classList.add(exitClass);
+        var outSlide = slide(cur);
+        var exitCls  = delta > 0 ? 'anim-out-left' : 'anim-out-right';
+        outSlide.classList.add(exitCls);
 
         setTimeout(function () {
-            outSlide.classList.remove('active', exitClass);
-
-            currentSlide = target;
-            showSlide(currentSlide, direction);
-
-            setTimeout(function () { isAnimating = false; }, ANIM_MS);
-        }, ANIM_MS - 60); // léger chevauchement pour fluidité
+            outSlide.classList.remove('active', exitCls);
+            cur = target;
+            activateSlide(cur, delta > 0 ? 'right' : 'left');
+            setTimeout(function () { busy = false; }, ANIM_MS + 80);
+        }, ANIM_MS - 60);
     }
 
-    // ─────────────────────────────────────────────────
-    //  Affiche une slide avec enter-animation + fx
-    // ─────────────────────────────────────────────────
-    function showSlide(index, direction) {
-        var slide = getSlide(index);
+    function activateSlide(idx, from) {
+        var s = slide(idx);
+        s.classList.add('active');
 
-        // Choix de la direction d'entrée
-        var enterClass = 'anim-enter-right';
-        if (direction === 'backward') enterClass = 'anim-enter-left';
-        if (direction === null)       enterClass = '';   // 1er affichage : pas d'anim de slide
-
-        slide.classList.add('active');
-        if (enterClass) slide.classList.add(enterClass);
-
-        // Nettoyage de l'animation après qu'elle est terminée
-        if (enterClass) {
-            slide.addEventListener('animationend', function cleanup() {
-                slide.classList.remove(enterClass);
-                slide.removeEventListener('animationend', cleanup);
+        if (from) {
+            var inCls = from === 'right' ? 'anim-in-right' : 'anim-in-left';
+            s.classList.add(inCls);
+            s.addEventListener('animationend', function f() {
+                s.classList.remove(inCls);
+                s.removeEventListener('animationend', f);
             });
-        } else {
-            // Juste afficher direct au 1er load (fx prend le relais)
-            slide.style.opacity = '1';
         }
 
-        // Réinitialise et re-observe les .fx de cette slide
-        revealFx(slide);
-
-        // Met à jour les dots
-        updateDots(index);
+        revealFx(s);
+        updateDots(idx);
     }
 
-    // ─────────────────────────────────────────────────
-    //  Scroll-reveal & load-reveal pour les .fx
-    // ─────────────────────────────────────────────────
-    var observer;
-    function revealFx(slide) {
-        // Retire is-visible de tous les .fx de la slide avant de les re-observer
-        var items = slide.querySelectorAll('.fx');
-        items.forEach(function (el) { el.classList.remove('is-visible'); });
+    // ─── FX reveal ────────────────────────────────────
+    function revealFx(s) {
+        var items = s.querySelectorAll('.fx');
+        items.forEach(function (el) { el.classList.remove('v'); });
 
         if (!('IntersectionObserver' in window)) {
-            items.forEach(function (el) { el.classList.add('is-visible'); });
+            items.forEach(function (el) { el.classList.add('v'); });
             return;
         }
 
-        // On recrée un observer à chaque changement de slide
-        // pour éviter les doubles-observes.
-        if (observer) observer.disconnect();
+        if (fxObs) fxObs.disconnect();
 
-        observer = new IntersectionObserver(function (entries) {
+        fxObs = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('v');
+                    fxObs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        items.forEach(function (el) { observer.observe(el); });
+        items.forEach(function (el) { fxObs.observe(el); });
     }
 
-    // ─────────────────────────────────────────────────
-    //  Dots
-    // ─────────────────────────────────────────────────
-    function buildDots() {
+    // ─── Dots ─────────────────────────────────────────
+    function buildAllDots() {
         for (var i = 0; i < TOTAL; i++) {
-            var container = document.getElementById('dots-' + i);
-            if (!container) continue;
-            container.innerHTML = '';
+            var c = document.getElementById('d' + i);
+            if (!c) continue;
+            c.innerHTML = '';
             for (var d = 0; d < TOTAL; d++) {
                 var dot = document.createElement('span');
-                dot.className = 'dot' + (d === 0 ? ' active' : '');
-                dot.setAttribute('data-dot', d);
-                container.appendChild(dot);
+                dot.className = 'dot' + (d === 0 ? ' a' : '');
+                dot.dataset.d = d;
+                c.appendChild(dot);
             }
         }
     }
 
-    function updateDots(activeIndex) {
-        document.querySelectorAll('.dot').forEach(function (dot) {
-            dot.classList.toggle('active', parseInt(dot.getAttribute('data-dot')) === activeIndex);
+    function updateDots(idx) {
+        document.querySelectorAll('.dot').forEach(function (d) {
+            d.classList.toggle('a', parseInt(d.dataset.d) === idx);
         });
     }
 
-    // ─────────────────────────────────────────────────
-    //  Helpers
-    // ─────────────────────────────────────────────────
-    function getSlide(index) {
-        return document.querySelector('[data-slide="' + index + '"]');
-    }
+    // ─── Helpers ──────────────────────────────────────
+    function slide(i) { return document.querySelector('[data-s="' + i + '"]'); }
 
-    // Navigation clavier (←  →)
+    // ─── Clavier ──────────────────────────────────────
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  goTo(currentSlide + 1);
-        if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    goTo(currentSlide - 1);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+        if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
     });
     </script>
 </body>

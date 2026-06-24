@@ -50,7 +50,7 @@
         <h1 class="text-4xl text-white font-bold text-center">Tu traverses une période difficile</h1>
         <p class="text-xl text-white text-center opacity-90">
             Ce que tu vis en ce moment est réel, et tu n'as pas à le traverser seul(e).
-            Il n'y a rien de honteux à avoir besoin d'aide — c'est même un acte de courage 💙
+            Il n'y a rien de honteux à avoir besoin d'aide, c'est même un acte de courage 💙
         </p>
         <p class="text-lg text-white text-center opacity-80">
             Des professionnels bienveillants sont disponibles gratuitement, 24h/24, en toute confidentialité :
@@ -58,11 +58,11 @@
         <div class="flex flex-col gap-4 w-full">
             <div class="bg-blue-100 text-blue-900 rounded-xl px-6 py-4">
                 <p class="font-bold text-lg">📞 3114 — Numéro national de prévention du suicide</p>
-                <p class="text-sm mt-1">Disponible 24h/24, 7j/7 · Gratuit · Confidentiel</p>
+                <p class="text-sm mt-1">Disponible 24h/24, 7j/7 - Gratuit - Confidentiel</p>
             </div>
             <div class="bg-blue-100 text-blue-900 rounded-xl px-6 py-4">
-                <p class="font-bold text-lg">📞 Fil Santé Jeunes — 3114 ou 0 800 235 236</p>
-                <p class="text-sm mt-1">Pour les jeunes · Gratuit · Disponible tous les jours</p>
+                <p class="font-bold text-lg">📞 Fil Santé Jeunes - 3114 ou 0 800 235 236</p>
+                <p class="text-sm mt-1">Pour les jeunes - Gratuit - Disponible tous les jours</p>
             </div>
             <div class="bg-blue-100 text-blue-900 rounded-xl px-6 py-4">
                 <p class="font-bold text-lg">💬 Chat sur filsantejeunes.com</p>

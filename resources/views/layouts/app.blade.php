@@ -20,7 +20,7 @@
 <body
     class="overflow-y-auto pt-[78px] bg-cover bg-center bg-no-repeat bg-fixed
     bg-[url('/public/assets/images/background-light.png')]
-    dark:bg-[url('/public/assets/images/background.png')]">
+    dark:bg-[url('/public/assets/images/bg.gif')]">
 
     <div class="min-h-screen">
         @include('layouts.navigation')
