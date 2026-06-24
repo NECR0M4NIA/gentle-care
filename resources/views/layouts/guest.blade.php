@@ -18,7 +18,15 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-cover bg-center bg-no-repeat font-sans text-gray-900 antialiased bg-[url('/public/assets/images/forest.jpg')] dark:bg-[url('/public/assets/images/forest-night.jpg')]">
+<body class="bg-cover bg-center bg-no-repeat font-sans text-gray-900 antialiased">
+
+    <div class="fixed inset-0 -z-10">
+        <img src="/assets/images/forest.jpg"
+             class="w-full h-full object-cover dark:hidden">
+
+        <img src="/assets/images/forest-night.jpg"
+             class="hidden dark:block w-full h-full object-cover">
+    </div>
 
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
 
