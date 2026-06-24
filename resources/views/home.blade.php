@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Accueil</title>
     @fonts
-    <!-- Styles / Scripts -->
+
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
@@ -17,15 +17,6 @@
         </style>
     @endif
 </head>
-<!-- <div class="flex center space-around">
-    <h1 class="mb-1 font-medium">Gentle Care</h1>
-    <p>Titre</p>
-    <div class="flex">
-        <p>Register</p>
-        <p>Login</p>
-    </div>
-</div>
-<p><a href="/history">Première fois sur le site</a></p> -->
 
 <body class="opacity-0 bg-cover bg-center bg-no-repeat flex flex-col min-h-screen w-screen overflow-hidden px-6 lg:px-24 lg:py-6 bg-[url('/public/assets/images/sunset-beach-bg.png')] dark:bg-[url('/public/assets/images/sunset-beach-bg-night.jpg')]">
 
