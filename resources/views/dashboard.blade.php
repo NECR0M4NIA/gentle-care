@@ -208,9 +208,9 @@ $citations = Citation::all(['author', 'content']);
 
             setTimeout(() => {
                 currentIndex = getRandomIndex();
-                const c = citations[currentIndex];
-                document.getElementById('citation-contenu').textContent = '« ' + c.content + ' »';
-                document.getElementById('citation-auteur').textContent = '— ' + c.author;
+                const quotes = citations[currentIndex];
+                document.getElementById('citation-contenu').textContent = '« ' + quotes.content + ' »';
+                document.getElementById('citation-auteur').textContent = '— ' + quotes.author;
 
                 // Fade in
                 container.style.opacity = '1';
@@ -349,95 +349,53 @@ $citations = Citation::all(['author', 'content']);
     @endif
 
     <script>
-        (function() {
-            var searchInput = document.getElementById('searchInput');
-            var filterRole = document.getElementById('filterRole');
-            var sortColEl = document.getElementById('sortCol');
-            var sortDirBtn = document.getElementById('sortDir');
-            var sortDirLabel = document.getElementById('sortDirLabel');
-            var sortDirIcon = document.getElementById('sortDirIcon');
+        document.addEventListener('DOMContentLoaded', function() {
+            var search = document.getElementById('searchInput');
+            if (!search) return;
+
+            var roleFilter = document.getElementById('filterRole');
+            var colFilter = document.getElementById('sortCol');
+            var dirBtn = document.getElementById('sortDir');
             var tbody = document.getElementById('usersBody');
-            var emptyState = document.getElementById('emptyState');
-            var resultCount = document.getElementById('resultCount');
+            var empty = document.getElementById('emptyState');
+            var counter = document.getElementById('resultCount');
+            var asc = true;
 
-            var sortAsc = true;
-
-            /* Toggle direction */
-            sortDirBtn.addEventListener('click', function() {
-                sortAsc = !sortAsc;
-                sortDirLabel.textContent = sortAsc ? 'Croissant' : 'Decroissant';
-                sortDirIcon.style.transform = sortAsc ? '' : 'scaleY(-1)';
+            dirBtn.addEventListener('click', function() {
+                asc = !asc;
+                document.getElementById('sortDirLabel').textContent = asc ? 'Croissant' : 'Décroissant';
+                document.getElementById('sortDirIcon').style.transform = asc ? '' : 'scaleY(-1)';
                 apply();
             });
 
-            /* Listeners */
-            searchInput.addEventListener('input', apply);
-            filterRole.addEventListener('change', apply);
-            sortColEl.addEventListener('change', apply);
+            [search, roleFilter, colFilter].forEach(el => el.addEventListener('input', apply));
 
             function apply() {
-                var query = searchInput.value.toLowerCase().trim();
-                var role = filterRole.value;
-                var col = sortColEl.value;
+                var rows = [...tbody.querySelectorAll('tr.user-row')];
+                var query = search.value.toLowerCase().trim();
+                var role = roleFilter.value;
+                var col = colFilter.value;
 
-                var rows = Array.from(tbody.querySelectorAll('tr.user-row'));
+                var visible = rows
+                    .filter(r => (!query || r.dataset.name.includes(query) || r.dataset.email.includes(query) || r.dataset.id.includes(query)) &&
+                        (!role || r.dataset.role === role))
+                    .sort((a, b) => {
+                        var va = ['id', 'date'].includes(col) ? +a.dataset[col] : a.dataset[col];
+                        var vb = ['id', 'date'].includes(col) ? +b.dataset[col] : b.dataset[col];
+                        return asc ? (va > vb ? 1 : -1) : (va < vb ? 1 : -1);
+                    });
 
-                /* 1. Filtrer */
-                var visible = rows.filter(function(row) {
-                    var matchSearch = !query ||
-                        row.dataset.id.includes(query) ||
-                        row.dataset.name.includes(query) ||
-                        row.dataset.email.includes(query);
-                    var matchRole = !role || row.dataset.role === role;
-                    return matchSearch && matchRole;
+                rows.forEach(r => r.style.display = 'none');
+                visible.forEach(r => {
+                    r.style.display = '';
+                    tbody.appendChild(r);
                 });
 
-                /* 2. Trier */
-                visible.sort(function(a, b) {
-                    var va, vb;
-                    if (col === 'id') {
-                        va = parseInt(a.dataset.id, 10);
-                        vb = parseInt(b.dataset.id, 10);
-                    } else if (col === 'name') {
-                        va = a.dataset.name;
-                        vb = b.dataset.name;
-                    } else if (col === 'email') {
-                        va = a.dataset.email;
-                        vb = b.dataset.email;
-                    } else {
-                        va = parseInt(a.dataset.date, 10);
-                        vb = parseInt(b.dataset.date, 10);
-                    }
-                    if (va < vb) return sortAsc ? -1 : 1;
-                    if (va > vb) return sortAsc ? 1 : -1;
-                    return 0;
-                });
-
-                /* 3. Masquer toutes les lignes */
-                rows.forEach(function(row) {
-                    row.style.display = 'none';
-                });
-
-                /* 4. Reinserer les lignes visibles dans le bon ordre */
-                visible.forEach(function(row) {
-                    row.style.display = '';
-                    tbody.appendChild(row);
-                });
-
-                /* 5. Etat vide + compteur */
-                if (visible.length === 0) {
-                    emptyState.classList.remove('hidden');
-                } else {
-                    emptyState.classList.add('hidden');
-                }
-
-                var total = rows.length;
-                resultCount.textContent = visible.length + ' / ' + total + ' utilisateur' + (total > 1 ? 's' : '');
+                empty.classList.toggle('hidden', visible.length > 0);
+                counter.textContent = visible.length + ' / ' + rows.length + ' utilisateur' + (rows.length > 1 ? 's' : '');
             }
 
-            /* Init du compteur */
             apply();
-
-        })();
+        });
     </script>
 </x-app-layout>
