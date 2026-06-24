@@ -69,8 +69,9 @@
 
         </div>
 
-        <a href="{{ route('dashboard') }}"
-            class="mt-6 inline-block bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-3 rounded-xl transition">
-            ← Retour au dashboard
-        </a>
+        <div class="text-center"> <a href="{{ route('dashboard') }}"
+                class="mt-6 inline-block bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-3 rounded-xl transition">
+                ← Retour au dashboard
+            </a>
+        </div>
 </x-app-layout>

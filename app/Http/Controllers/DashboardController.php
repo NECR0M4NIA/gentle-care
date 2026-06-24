@@ -23,7 +23,6 @@ class DashboardController extends Controller
         $labels = $resultats->pluck('date_resultat');
         $scores = $resultats->pluck('score_total');
 
-        // Compte le nombre de fois dans chaque zone
         $countVert  = $resultats->where('score_total', '<=', 20)->count();
         $countJaune = $resultats->whereBetween('score_total', [21, 40])->count();
         $countRouge = $resultats->where('score_total', '>=', 41)->count();
