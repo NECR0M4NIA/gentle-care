@@ -32,8 +32,8 @@ $citations = Citation::all(['author', 'content']);
     </div>
     @endif
 
-    <h1>Bienvenue {{ Auth::user()->name }}</h1>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
+        <h1 class="text-4xl text-white mt-8 mb-16 font-bold">Bienvenue {{ Auth::user()->name }}</h1>
         <h2 class="text-white text-2xl font-bold mb-6">Mon évolution</h2>
 
         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
@@ -51,10 +51,8 @@ $citations = Citation::all(['author', 'content']);
                 </span>
             </div>
 
-            {{-- Graphique + barres --}}
             <div class="flex flex-col md:flex-row items-center gap-8">
 
-                {{-- Donut --}}
                 <div class="relative w-52 h-52 flex-shrink-0">
                     <canvas id="scoreChart"></canvas>
                     <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
@@ -63,7 +61,6 @@ $citations = Citation::all(['author', 'content']);
                     </div>
                 </div>
 
-                {{-- Barres de progression --}}
                 <div class="flex-1 w-full flex flex-col gap-4">
                     <div class="flex items-center gap-3">
                         <span class="text-sm text-white/60 w-28 shrink-0">Bien (0–20)</span>
@@ -93,7 +90,7 @@ $citations = Citation::all(['author', 'content']);
                     </div>
                 </div>
             </div>
-            {{-- Citation aléatoire --}}
+
             <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mt-4">
                 <div id="citation-container" class="flex flex-col items-center text-center min-h-[80px] justify-center transition-opacity duration-500">
                     <p id="citation-contenu" class="text-white/80 italic text-base leading-relaxed"></p>
@@ -440,7 +437,7 @@ $citations = Citation::all(['author', 'content']);
 
             /* Init du compteur */
             apply();
+
         })();
     </script>
-
 </x-app-layout>

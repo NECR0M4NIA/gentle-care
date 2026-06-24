@@ -18,13 +18,6 @@
             C'est tout à fait normal d'avoir des périodes de stress ou de fatigue.
             Voici quelques exercices de respiration qui peuvent t'aider à retrouver ton calme 🌬️
         </p>
-        <!-- <div class="flex flex-col gap-4 w-full mt-2">
-                <a href="/videos"
-                   target="_blank"
-                   class="bg-yellow-100 text-yellow-900 rounded-xl px-6 py-4 font-bold text-lg text-center hover:bg-yellow-200 transition">
-                    🎥 Voir des vidéos de respiration guidée
-                </a>
-            </div> -->
         @if (!empty($videos))
         <div class="flex flex-col gap-4 w-full">
             @foreach ($videos as $video)
@@ -75,4 +68,9 @@
         <p class="text-white opacity-40 text-sm mt-4">Score : {{ $score }} / 60</p>
 
         </div>
+
+        <a href="{{ route('dashboard') }}"
+            class="mt-6 inline-block bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-3 rounded-xl transition">
+            ← Retour au dashboard
+        </a>
 </x-app-layout>
