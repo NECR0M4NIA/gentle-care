@@ -63,10 +63,10 @@
     </div>
 
     <div class="w-full md:w-1/2 flex justify-center">
-        <img src="/assets/images/tablet-item.png"
+        <img src="/assets/images/light/tablet-item.png"
              class="reveal dark:hidden max-w-full max-h-[50vh] md:max-h-[70vh] object-contain rounded-xl shadow-lg">
 
-        <img src="/assets/images/party.jpg"
+        <img src="/assets/images/dark/party.jpg"
              class="reveal hidden dark:block max-w-full max-h-[50vh] md:max-h-[70vh] object-contain rounded-xl shadow-lg">
     </div>
 
