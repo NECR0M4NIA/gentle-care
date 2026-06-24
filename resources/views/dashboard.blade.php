@@ -32,9 +32,9 @@ $citations = Citation::all(['author', 'content']);
     </div>
     @endif
 
-    <h1>Bienvenue {{ Auth::user()->name }}</h1>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
-        <h2 class="text-white text-2xl font-bold mb-6">L'évolution du bien-être</h2>
+        <h1 class="text-4xl text-white mt-8 mb-16 font-bold">Bienvenue {{ Auth::user()->name }}</h1>
+        <h2 class="text-white text-2xl font-bold mb-6">Mon évolution</h2>
 
         <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
 
