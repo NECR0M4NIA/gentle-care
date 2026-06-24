@@ -53,7 +53,7 @@
             qui traversent des moments difficiles ou ne se sentent pas bien.
         </p>
 
-        <a href="/histoire"
+        <a href="/history"
            class="reveal inline-block px-6 py-3 rounded-lg font-semibold text-white shadow-md transition
            bg-[#FF8D28] hover:bg-[#e08f3e]
            dark:bg-[#4B83F5] dark:hover:bg-[#566495]">

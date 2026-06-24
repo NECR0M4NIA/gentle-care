@@ -17,7 +17,7 @@ Route::get('/histoire', function () {
 })->middleware('guest');
 
 Route::get('/history', function () {
-    return view('history2');
+    return view('histoire');
 })->middleware('guest');
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -36,7 +36,7 @@ Route::get('/playground', function () {
 
 Route::get('/a-propos', function () {
     return view('a-propos');
-})->middleware(['auth', 'verified'])->name('a-propos');
+});
 
 Route::get('/avis', [AvisController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -48,7 +48,7 @@ Route::post('/avis', [AvisController::class, 'ajouter'])
 
 Route::get('/contact', function () {
     return view('contact');
-})->middleware(['auth', 'verified'])->name('contact');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/questionnaire/{id_questionnaire}/resultat', [QuestionnaireController::class, 'resultat'])->name('questionnaire.resultat');
