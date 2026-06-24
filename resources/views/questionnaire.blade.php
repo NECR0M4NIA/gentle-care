@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-12 py-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-12 py-16">
 
         <h1 class="text-4xl text-white text-center font-bold">
             {{ $question->categorie->nom_categorie }}
@@ -17,37 +17,50 @@
         <form action="{{ route('questionnaire.store', $id_questionnaire) }}" method="POST">
             @csrf
             <input type="hidden" name="id_question" value="{{ $question->id_question }}">
-            <input type="hidden" name="ordre"       value="{{ $ordre }}">
+            <input type="hidden" name="ordre" value="{{ $ordre }}">
 
             <div class="flex flex-col gap-4">
                 @foreach ($question->choix as $choix)
-                    <label for="choix_{{ $choix->id_choix }}"
-                           class="flex items-center gap-4 bg-gray-200 bg-opacity-50 rounded-xl px-8 py-5 cursor-pointer hover:bg-opacity-70 transition">
-                        <input
-                            type="radio"
-                            id="choix_{{ $choix->id_choix }}"
-                            name="id_choix"
-                            value="{{ $choix->id_choix }}"
-                            class="w-5 h-5 accent-orange-400"
-                            required
-                        >
-                        <span class="text-2xl text-black font-bold">
-                            {{ $choix->nom_choix }}
-                        </span>
-                    </label>
+                <label for="choix_{{ $choix->id_choix }}"
+                    class="flex items-center gap-4 bg-gray-200 bg-opacity-50 rounded-xl px-8 py-5 cursor-pointer hover:bg-opacity-70 transition">
+                    <input
+                        type="radio"
+                        id="choix_{{ $choix->id_choix }}"
+                        name="id_choix"
+                        value="{{ $choix->id_choix }}"
+                        class="w-5 h-5 accent-orange-400"
+                        required>
+                    <span class="text-2xl text-black font-bold">
+                        {{ $choix->nom_choix }}
+                    </span>
+                </label>
                 @endforeach
             </div>
 
             @error('id_choix')
-                <p class="text-red-400 mt-2">Merci de sélectionner une réponse.</p>
+            <p class="text-red-400 mt-2">Merci de sélectionner une réponse.</p>
             @enderror
 
-            <div class="mt-8 flex justify-end">
+            <div class="mt-8 flex justify-between items-center">
+
+                {{-- Bouton précédent --}}
+                @if($ordre > 1)
+                <a href="{{ route('questionnaire.show', [$id_questionnaire, $ordre - 1]) }}"
+                    class="rounded-xl bg-white/10 hover:bg-white/20 text-white py-3 px-8 text-2xl font-bold shadow-sm transition">
+                    ← Précédent
+                </a>
+                @else
+                <div></div> {{-- placeholder pour garder le bouton suivant à droite --}}
+                @endif
+
+                {{-- Bouton suivant --}}
                 <button type="submit"
-                        class="rounded-xl bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white py-3 px-8 text-2xl font-bold shadow-sm transition">
+                    class="rounded-xl bg-[#FF8D28] dark:bg-[#4B83F5] hover:bg-[#e08f3e] dark:hover:bg-[#566495] text-white py-3 px-8 text-2xl font-bold shadow-sm transition">
                     Suivant
                 </button>
-            </div>
-        </form>
+
+                </div>
+    </div>
+    </form>
     </div>
 </x-app-layout>

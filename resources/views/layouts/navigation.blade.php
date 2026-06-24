@@ -7,15 +7,14 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-4 text-sm text-white/80">
         <span class="font-semibold text-white">🆘 Besoin d'aide ?</span>
         <span class="flex items-center gap-2">
-            📞 <span class="font-bold text-white">3114</span> — Prévention du suicide · Gratuit · 24h/24
+            📞 <span class="font-bold text-white">3114</span> — Prévention du suicide - Gratuit - 24h/24
         </span>
         <span class="flex items-center gap-2">
-            📞 <span class="font-bold text-white">3020</span> — Harcèlement scolaire · Gratuit · Lun–Ven
+            📞 <span class="font-bold text-white">3020</span> — Harcèlement scolaire - Gratuit - Lun–Ven
         </span>
     </div>
 </div>
 
-    {{-- Liens --}}
     @if(auth()->user() && auth()->user()->role === 'user')
     <x-nav-link :active="request()->routeIs('dashboard')" :href="route('dashboard')" class="text-white font-semibold hover:text-blue-300 transition">Dashboard</x-nav-link>
     <x-nav-link :active="request()->routeIs('videos')" :href="route('videos')" class="text-white font-semibold hover:text-blue-300 transition">Vidéos</x-nav-link>
@@ -25,14 +24,10 @@
     <x-nav-link :active="request()->routeIs('avis')" :href="route('avis')" class="text-white font-semibold hover:text-blue-300 transition">Avis</x-nav-link>
     @else
     <x-nav-link :active="request()->routeIs('dashboard')" :href="route('dashboard')" class="text-white font-semibold hover:text-blue-300 transition">Dashboard</x-nav-link>
-    <x-nav-link :active="request()->routeIs('admin')" :href="route('admin')" class="text-white font-semibold hover:text-blue-300 transition">Admin</x-nav-link>
     @endif
 
-    {{-- Avatar --}}
-    {{-- Dans ta navbar, remplace le bouton user par ceci --}}
     <div class="relative" x-data="{ open: false }">
 
-        {{-- Bouton avatar --}}
         @if(auth()->user() && auth()->user()->role === 'user')
         <button @click="open = !open" @click.outside="open = false"
             class="w-9 h-9 rounded-full flex items-center justify-center transition"
@@ -57,18 +52,15 @@
         </button>
         @endif
 
-        {{-- Dropdown --}}
         <div x-show="open" x-transition
             class="absolute right-0 mt-2 w-52 rounded-xl py-2 z-50"
             style="background: rgba(20,15,45,0.92); border: 1px solid rgba(255,255,255,0.2);">
 
-            {{-- Infos utilisateur --}}
             <div class="px-4 py-2 border-b" style="border-color: rgba(255,255,255,0.12);">
                 <p class="text-white text-sm font-medium">{{ Auth::user()->name }}</p>
                 <p class="text-xs" style="color: rgba(255,255,255,0.45);">{{ Auth::user()->email }}</p>
             </div>
 
-            {{-- Voir le profil --}}
             <a href="{{ route('profile.edit') }}"
                 class="flex items-center gap-3 px-4 py-2 text-sm transition"
                 style="color: rgba(255,255,255,0.8);"
@@ -83,7 +75,6 @@
 
             <div class="my-1 mx-3" style="height:1px; background: rgba(255,255,255,0.1);"></div>
 
-            {{-- Déconnexion --}}
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
