@@ -76,16 +76,35 @@
             <p class="text-sm font-medium uppercase tracking-widest mb-8 transition-all duration-500 dark:text-sky-300 text-orange-400"
                 x-text="currentStep.eyebrow"></p>
 
-            <div class="relative flex items-center justify-center mb-10 w-72 h-72">
-                <div class="absolute w-48 h-48 rounded-full transition-transform ease-in-out blur-xl opacity-40"
-                    :style="`transform: scale(${currentStep.scaleOuter}); background: ${isDark ? currentStep.haloColorDark : currentStep.haloColorLight}; transition-duration: ${currentStep.duration}ms;`"></div>
+           <div class="relative flex items-center justify-center mb-10 w-72 h-72">
+    <!-- Halo flou -->
+    <div
+        class="absolute w-48 h-48 rounded-full blur-[80px] opacity-50 transition-transform ease-in-out"
+        :style="`
+            transform: scale(${currentStep.scaleOuter});
+            background: ${currentStep.haloColor};
+            transition-duration: ${currentStep.duration}ms;
+        `">
+    </div>
 
-                <div class="absolute w-48 h-48 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.1)] backdrop-blur-md border transition-transform ease-in-out z-10 border-white/10 text-white"
-                    :style="`transform: scale(${currentStep.scaleInner}); background: ${isDark ? currentStep.gradientDark : currentStep.gradientLight}; transition-duration: ${currentStep.duration}ms;`">
-                    <span class="font-light text-4xl tabular-nums tracking-tighter drop-shadow-md"
-                        x-text="countdown > 0 ? countdown : ''"></span>
-                </div>
-            </div>
+    <!-- Cercle principal -->
+    <div
+        class="absolute w-48 h-48 rounded-full flex items-center justify-center
+               backdrop-blur-xl border border-white/20
+               transition-transform ease-in-out z-10"
+        :style="`
+            transform: scale(${currentStep.scaleInner});
+            background: ${currentStep.gradient};
+            transition-duration: ${currentStep.duration}ms;
+        `">
+
+        <span
+            class="font-light text-4xl tabular-nums tracking-tighter text-white"
+            x-text="countdown > 0 ? countdown : ''">
+        </span>
+
+    </div>
+</div>
 
             <p class="text-3xl md:text-4xl font-bold mb-3 transition-all duration-700"
                 :class="'text-slate-100'"
