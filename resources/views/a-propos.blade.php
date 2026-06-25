@@ -46,9 +46,8 @@
                 <h2 class="text-4xl text-white font-bold">Forcerion</h2>
 
                 <p class="text-white/90 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat quas officia magni ea lorem irure occaecat duis obcaecati
-                    vitae ea nesciunt. Dolores inventore architecto sed aute commodo cillum enim proident. Voluptas dolorem dolorem ex sint magnamquaerat
-                </p>
+                    Salut, je m'appelle Forcerion. Je suis l'un des développeurs ayant contribué à ce projet, et je suis très heureux d'avoir pu y participer. Pouvoir créer des outils utiles et offrir une expérience agréable aux utilisateurs est une véritable source de motivation pour moi. 
+                    J'espère que ce projet vous plaît et qu'il répond à vos attentes. Merci pour votre confiance et votre soutien !
 
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/Forcerion">
