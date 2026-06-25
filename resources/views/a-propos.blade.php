@@ -50,7 +50,7 @@
                     J'espère que ce projet vous plaît et qu'il répond à vos attentes. Merci pour votre confiance et votre soutien !
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/Forcerion">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/Forcerion" target="__blank">
                         <img width="24" src="/assets/icons/github.svg" alt="">
                         Github
                     </a>
@@ -82,7 +82,7 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/FonceurOk">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/FonceurOk" target="__blank">
                         <img width="24" src="/assets/icons/github.svg" alt="FonceurOk">
                         Github
                     </a>
@@ -108,12 +108,12 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 pt-2">
-                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/NECR0M4NIA">
+                    <a class="inline-flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-colors" href="https://github.com/NECR0M4NIA" target="__blank">
                         <img width="24" src="/assets/icons/github.svg" alt="">
                         Github
                     </a>
 
-                    <a class="inline-flex items-center gap-2 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-colors" href="https://www.youtube.com/@NECROMANIA">
+                    <a class="inline-flex items-center gap-2 bg-red-700 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition-colors" href="https://www.youtube.com/@NECROMANIA" target="__blank">
                         <img width="24" src="/assets/icons/youtube.svg" alt="">
                         YouTube
                     </a>
