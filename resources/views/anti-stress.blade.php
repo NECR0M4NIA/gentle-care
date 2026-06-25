@@ -95,9 +95,8 @@
                 :class="'text-slate-400'"
                 x-text="currentStep.subPhrase"></p>
 
-            <div class="w-full max-w-xs h-1 rounded-full mb-8 dark:bg-sky-400 bg-orange-400"
-                :class="'bg-slate-200'">
-                <div class="h-1 rounded-full transition-all duration-1000"
+           <div class="w-full max-w-xs h-1 rounded-full mb-8 dark:bg-slate-700 bg-slate-200">
+                <div class="h-1 rounded-full transition-all duration-1000 dark:bg-sky-400 bg-orange-400"
                     :style="`width: ${progressPercent}%`"></div>
             </div>
 
