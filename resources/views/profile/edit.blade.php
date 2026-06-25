@@ -1,7 +1,7 @@
 <x-app-layout>
     <div x-data="accessibility()" x-init="init()">
 
-        <h1 class="text-center text-xl text-white font-bold p-6">
+        <h1 class="text-center text-4xl text-white font-bold p-6 mt-10 bg-gradient-to-r from-orange-400 via-pink-500 to-sky-500 bg-clip-text text-bold ">
             Modifier votre profil
         </h1>
 
