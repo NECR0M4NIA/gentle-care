@@ -166,7 +166,7 @@
         </div>
 </section>
 <section>
-    <div class="min-h-[80vh] flex items-center justify-center">
+    <div class="min-h-[68vh] flex items-center justify-center">
         <div class="reveal grid grid-cols-1 place-items-center border-4 border-white rounded-2xl px-6 py-12 md:px-12 md:py-14 gap-10 w-full max-w-5xl shadow-2xl">
             <h1 class="text-4xl md:text-6xl text-white text-center font-bold">
                Êtes-vous prêts à vous enregistrer ?
