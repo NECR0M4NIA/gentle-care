@@ -34,7 +34,7 @@
     @include('layouts.navbar')
 </div>
 
-    <div class="min-h-screen mt-6 flex items-center justify-center px-6">
+    <div class="min-h-screen -mt-20 flex items-center justify-center px-6">
         <div class="max-w-3xl w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-10 text-center">
             <h1 class="text-4xl font-bold text-red-600 mb-6">
                 Désolé 😕
